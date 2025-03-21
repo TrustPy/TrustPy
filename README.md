@@ -1,6 +1,6 @@
 # How Much Can We Really Trust You? Towards Simple, Interpretable Trust Quantification Metrics for Deep Neural Networks
 
-This project provides a Python implementation of trustworthiness quantification metrics for predictive models (e.g., DNNs) as proposed in [How Much Can We Really Trust You? Towards Simple, Interpretable Trust Quantification Metrics for Deep Neural Networks](Wong, A., Wang, X. Y., &amp; Hryniowski, A. (2020). How much can we really trust you? towards simple, interpretable trust quantification metrics for deep neural networks. arXiv preprint arXiv:2009.05835). The metrics evaluate a model's trustworthiness based on its confidence behavior in correct and incorrect predictions.  
+This project provides a Python implementation of trustworthiness quantification metrics for predictive models (e.g., DNNs) as proposed in [How Much Can We Really Trust You? Towards Simple, Interpretable Trust Quantification Metrics for Deep Neural Networks]([Wong, A., Wang, X. Y., &amp; Hryniowski, A. (2020). How much can we really trust you? towards simple, interpretable trust quantification metrics for deep neural networks. arXiv preprint arXiv:2009.05835](https://arxiv.org/pdf/2009.05835). The metrics evaluate a model's trustworthiness based on its confidence behavior in correct and incorrect predictions.  
 
 ###
 **The implementation is flexible and can be used with any Python code that produces softmax probabilities for classification tasks without modifications.**
