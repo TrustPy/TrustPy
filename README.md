@@ -41,7 +41,8 @@ predictions = np.array([
     [0.1, 0.2, 0.7],  # Correct, high confidence
     [0.1, 0.8, 0.1],  # Incorrect, high confidence for wrong class
     [0.3, 0.3, 0.4]   # Incorrect, low confidence
-]) #Replace this with your model's predictions (`model.predict()`)
+]
+) #Replace this with your model's predictions (`predictions = model.predict()`)
 
 # Initialize with default parameters
 trust = Trustworthiness(oracle, predictions)
