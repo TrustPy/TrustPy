@@ -2,15 +2,17 @@
 
 This project provides a Python implementation of trustworthiness quantification metrics for deep neural networks (DNNs), as proposed in the paper "How Much Can We Really Trust You? Towards Simple, Interpretable Trust Quantification Metrics for Deep Neural Networks" by Wong et al. (Wong, A., Wang, X. Y., &amp; Hryniowski, A. (2020). How much can we really trust you? towards simple, interpretable trust quantification metrics for deep neural networks. arXiv preprint arXiv:2009.05835). The metrics evaluate a model's trustworthiness based on its confidence behavior in correct and incorrect predictions.  
 
-The implementation is flexible and can be used with **any Python code that produces softmax probabilities** for classification tasks without modifications.
+###
+**The implementation is flexible and can be used with any Python code that produces softmax probabilities for classification tasks without modifications.**
+###
 
 ### Key Features
-- **Question-Answer Trust**: Computes a per-sample trust score based on prediction correctness and softmax probability.
+- **Question-Answer Trust**: Computes trust scores per sample based on prediction correctness and softmax probability.
 - **Trust Density**: Estimates the distribution of trust scores per class using Kernel Density Estimation (KDE).
 - **Trust Spectrum**: Visualizes trust densities across all classes.
 - **NetTrustScore (NTS)**: Provides a scalar metric summarizing overall trustworthiness.
 
-These tools are ideal for assessing and comparing the reliability of DNN models in classification scenarios.
+These tools are ideal for assessing and comparing the **reliability** of predictive models (e.g., DNNs) in classification scenarios.
 
 ---
 
