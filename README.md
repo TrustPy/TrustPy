@@ -28,6 +28,33 @@ Install them via pip:
 pip install numpy matplotlib scikit-learn
 ```
 
+## Example
+```
+import numpy as np
+from trustworthiness import Trustworthiness  # Adjust import based on your setup
+
+# Example data
+oracle = np.array([0, 1, 2, 0, 1])  # True labels
+predictions = np.array([
+    [0.8, 0.1, 0.1],  # Correct, high confidence
+    [0.2, 0.7, 0.1],  # Correct, high confidence
+    [0.1, 0.2, 0.7],  # Correct, high confidence
+    [0.1, 0.8, 0.1],  # Incorrect, high confidence for wrong class
+    [0.3, 0.3, 0.4]   # Incorrect, low confidence
+]) #Replace this with your model's predictions (`model.predict()`)
+
+# Initialize with default parameters
+trust = Trustworthiness(oracle, predictions)
+
+# Compute trustworthiness metrics
+class_nts, overall_nts = trust.compute_NTS()
+print("Per-class NTS:", class_nts)
+print("Overall NTS:", overall_nts)
+
+# Optionally plot the trust spectrum
+trust.compute_NTS(fig_show=True)
+```
+
 ## I developed this code as a part of my publications as listed below:  
 1. Yanik, E., Kruger, U., Intes, X., Rahul, R., & De, S. (2023). Video-based formative and summative assessment of surgical tasks using deep learning. Scientific Reports, 13(1), 1038.
 2. Yanik, E., Ainam, J. P., Fu, Y., Schwaitzberg, S., Cavuoto, L., & De, S. (2024). Video-based skill acquisition assessment in laparoscopic surgery using deep learning. Global Surgical Education-Journal of the Association for Surgical Education, 3(1), 26.
