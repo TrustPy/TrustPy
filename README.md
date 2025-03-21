@@ -1,11 +1,31 @@
 # How Much Can We Really Trust You? Towards Simple, Interpretable Trust Quantification Metrics for Deep Neural Networks
 
-This repository contains an implementation of the trustworthiness methods described in: Wong, A., Wang, X. Y., &amp; Hryniowski, A. (2020). How much can we really trust you? towards simple, interpretable trust quantification metrics for deep neural networks. arXiv preprint arXiv:2009.05835.
+This project provides a Python implementation of trustworthiness quantification metrics for deep neural networks (DNNs), as proposed in the paper "How Much Can We Really Trust You? Towards Simple, Interpretable Trust Quantification Metrics for Deep Neural Networks" by Alexander Wong et al. (Wong, A., Wang, X. Y., &amp; Hryniowski, A. (2020). How much can we really trust you? towards simple, interpretable trust quantification metrics for deep neural networks. arXiv preprint arXiv:2009.05835). The metrics evaluate a model's trustworthiness based on its confidence behavior in correct and incorrect predictions.  
 
+The implementation is flexible and can be used with **any Python code that produces softmax probabilities** for classification tasks without modifications.
 
-The code is written on Python, designed to be callable without modifications for any AI/ML application that generates SoftMax probabilities.
+### Key Features
+- **Question-Answer Trust**: Computes a per-sample trust score based on prediction correctness and softmax probability.
+- **Trust Density**: Estimates the distribution of trust scores per class using Kernel Density Estimation (KDE).
+- **Trust Spectrum**: Visualizes trust densities across all classes.
+- **NetTrustScore (NTS)**: Provides a scalar metric summarizing overall trustworthiness.
 
+These tools are ideal for assessing and comparing the reliability of DNN models in classification scenarios.
 
+---
+
+## Installation
+
+To use this code, install the required Python packages:
+
+- **NumPy**: For numerical computations.
+- **Matplotlib**: For plotting the trust spectrum.
+- **Scikit-learn**: For KDE in trust density estimation.
+
+Install them via pip:
+
+```bash
+pip install numpy matplotlib scikit-learn
 
 ## I developed this code as a part of my publications as listed below:  
 1. Yanik, E., Kruger, U., Intes, X., Rahul, R., & De, S. (2023). Video-based formative and summative assessment of surgical tasks using deep learning. Scientific Reports, 13(1), 1038.
