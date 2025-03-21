@@ -26,6 +26,7 @@ Install them via pip:
 
 ```bash
 pip install numpy matplotlib scikit-learn
+```
 
 ## I developed this code as a part of my publications as listed below:  
 1. Yanik, E., Kruger, U., Intes, X., Rahul, R., & De, S. (2023). Video-based formative and summative assessment of surgical tasks using deep learning. Scientific Reports, 13(1), 1038.
