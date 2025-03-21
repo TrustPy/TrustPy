@@ -29,7 +29,7 @@ pip install numpy matplotlib scikit-learn
 ```
 
 ## Example
-```
+```python
 import numpy as np
 from trustworthiness import Trustworthiness  # Adjust import based on your setup
 
