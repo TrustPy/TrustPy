@@ -1,6 +1,6 @@
 # How Much Can We Really Trust You? Towards Simple, Interpretable Trust Quantification Metrics for Deep Neural Networks
 
-This project provides a Python implementation of trustworthiness quantification metrics for deep neural networks (DNNs), as proposed in the paper "How Much Can We Really Trust You? Towards Simple, Interpretable Trust Quantification Metrics for Deep Neural Networks" by Wong et al. (Wong, A., Wang, X. Y., &amp; Hryniowski, A. (2020). How much can we really trust you? towards simple, interpretable trust quantification metrics for deep neural networks. arXiv preprint arXiv:2009.05835). The metrics evaluate a model's trustworthiness based on its confidence behavior in correct and incorrect predictions.  
+This project provides a Python implementation of trustworthiness quantification metrics for predictive models (e.g., DNNs) as proposed in [How Much Can We Really Trust You? Towards Simple, Interpretable Trust Quantification Metrics for Deep Neural Networks](Wong, A., Wang, X. Y., &amp; Hryniowski, A. (2020). How much can we really trust you? towards simple, interpretable trust quantification metrics for deep neural networks. arXiv preprint arXiv:2009.05835). The metrics evaluate a model's trustworthiness based on its confidence behavior in correct and incorrect predictions.  
 
 ###
 **The implementation is flexible and can be used with any Python code that produces softmax probabilities for classification tasks without modifications.**
@@ -20,14 +20,22 @@ These tools are ideal for assessing and comparing the **reliability** of predict
 
 To use this code, install the required Python packages:
 
-- **NumPy**: For numerical computations.
+- **NumPy**: For numerical calculations.
 - **Matplotlib**: For plotting the trust spectrum.
-- **Scikit-learn**: For KDE in trust density estimation.
+- **Scikit-learn**: For Kernel Density Estimation (KDE) in trust density estimation.
 
 Install them via pip:
 
 ```bash
 pip install numpy matplotlib scikit-learn
+```
+
+or
+
+Install them via conda:
+
+```bash
+conda install numpy matplotlib scikit-learn
 ```
 
 ## Example
@@ -56,7 +64,7 @@ print("NTS, overall  :", overall_nts)
 
 ```
 
-## I developed this code as a part of my publications as listed below:  
+## I developed this code in 2021 as a part of my publications as listed below:  
 1. Yanik, E., Kruger, U., Intes, X., Rahul, R., & De, S. (2023). Video-based formative and summative assessment of surgical tasks using deep learning. Scientific Reports, 13(1), 1038.
 2. Yanik, E., Ainam, J. P., Fu, Y., Schwaitzberg, S., Cavuoto, L., & De, S. (2024). Video-based skill acquisition assessment in laparoscopic surgery using deep learning. Global Surgical Education-Journal of the Association for Surgical Education, 3(1), 26.
 3. Yanik, E., Schwaitzberg, S., Yang, G., Intes, X., Norfleet, J., Hackett, M., & De, S. (2024). One-shot skill assessment in high-stakes domains with limited data via meta learning. Computers in Biology and Medicine, 174, 108470. / Yanik, E., Schwaitzberg, S., Yang, J., Intes, X., & De, S. (2022). One-shot domain adaptation in video-based assessment of surgical skills. arXiv e-prints, arXiv-2301.
