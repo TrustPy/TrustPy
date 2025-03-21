@@ -23,13 +23,10 @@ class Trustworthiness:
         self.beta = beta
         self.trust_spectrum = trust_spectrum
         
-    def compute_NTS(self, fig_show: bool = False) -> tuple:
+    def compute_NTS(self) -> tuple:
         """
         Compute the NTS for each class and overall, with optional trust spectrum plot.
-
-        Args:
-            fig_show (bool, optional): Whether to display the trust spectrum. Defaults to False.
-
+        
         Returns:
             tuple: (class_nts, overall_nts)
                 - class_nts (list): NTS for each class.
@@ -118,7 +115,7 @@ class Trustworthiness:
             ax[c].tick_params(labelsize=24)
             ax[c].set_title(f'{class_labels[c]}\nNTS = {class_nts[c]:.3f}', fontsize=24)
         plt.tight_layout()
-        plt.savefig(os.path.join('./Trust_Spectrum.png'))
+        plt.savefig(os.path.join('./trust_spectrum.png'))
         plt.close()
 
     def compute_overall_NTS(self, class_nts: list, qa_trust: list) -> float:
