@@ -31,9 +31,9 @@ pip install numpy matplotlib scikit-learn
 ## Example
 ```python
 import numpy as np
-from trustworthiness import Trustworthiness  # Adjust import based on your setup
+from trustworthiness import Trustworthiness
 
-# Example data
+# Example oracle and predictions
 oracle = np.array([0, 1, 2, 0, 1])  # True labels
 predictions = np.array([
     [0.8, 0.1, 0.1],  # Correct, high confidence
@@ -47,13 +47,11 @@ predictions = np.array([
 # Initialize with default parameters
 trust = Trustworthiness(oracle, predictions)
 
-# Compute trustworthiness metrics
-class_nts, overall_nts = trust.compute_NTS()
-print("Per-class NTS:", class_nts)
-print("Overall NTS:", overall_nts)
+# Compute trustworthiness metrics. trust_spectrum = True if the user wants spectrum plot to be saved.
+class_nts, overall_nts = trust.compute_NTS(trust_spectrum = True)
+print("NTS, per class:", class_nts)
+print("NTS, overall  :", overall_nts)
 
-# Optionally plot the trust spectrum
-trust.compute_NTS(fig_show=True)
 ```
 
 ## I developed this code as a part of my publications as listed below:  
