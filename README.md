@@ -38,7 +38,7 @@ Install them via conda:
 conda install numpy matplotlib scikit-learn
 ```
 
-## Example
+## Example Usage
 ```python
 import numpy as np
 from trustworthiness import Trustworthiness
