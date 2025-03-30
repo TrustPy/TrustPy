@@ -1,0 +1,1 @@
+package: {name: nettrustscore, version: '1.0.0'} source: {path: .} requirements: {build: [python, setuptools], run: [python, numpy, scikit-learn, matplotlib]} about: {home: https://github.com/yaniker/nettrustscore-python, license: MIT, summary: 'Trustworthiness metrics for predictive models'}
