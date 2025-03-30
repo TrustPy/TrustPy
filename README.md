@@ -41,7 +41,7 @@ conda install numpy matplotlib scikit-learn
 ## Example Usage
 ```python
 import numpy as np
-from trustworthiness import Trustworthiness
+from trustworthiness import Trustworthiness #This is how the package is imported.
 
 # Example oracle and predictions
 oracle = np.array([0, 1, 2, 0, 1])  # True labels
@@ -55,10 +55,10 @@ predictions = np.array([
 ) #Replace this with your model's predictions (`predictions = model.predict()`)
 
 # Initialize with default parameters
-trust = Trustworthiness(oracle, predictions)
+trust = Trustworthiness(oracle, predictions) #This is how you initialize.
 
 # Compute trustworthiness metrics. trust_spectrum = True if the user wants spectrum plot to be saved.
-class_nts, overall_nts = trust.compute_NTS(trust_spectrum = True)
+class_nts, overall_nts = trust.compute_NTS(trust_spectrum = True) #This generates the desired NTS values.
 print("NTS, per class:", class_nts)
 print("NTS, overall  :", overall_nts)
 
