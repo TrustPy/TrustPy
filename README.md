@@ -1,9 +1,9 @@
-# How Much Can We Really Trust You? Towards Simple, Interpretable Trust Quantification Metrics for Deep Neural Networks
+# NetTrustScore - NTS
 
 This repository provides a Python implementation of trustworthiness quantification metrics for predictive models (e.g., DNNs) as proposed in [How Much Can We Really Trust You? Towards Simple, Interpretable Trust Quantification Metrics for Deep Neural Networks](https://arxiv.org/pdf/2009.05835). The metrics evaluate a model's trustworthiness based on its confidence behavior in correct and incorrect predictions.  
 
 ###
-**The implementation is flexible and can be used with any Python code that produces softmax probabilities for classification tasks without modifications.**
+**The implementation is flexible and works out-the-box with any Python code that outputs SoftMax probabilities.**
 ###
 
 ### Key Features
@@ -12,7 +12,7 @@ This repository provides a Python implementation of trustworthiness quantificati
 - **Trust Spectrum**: Visualizes trust densities across all classes.
 - **NetTrustScore (NTS)**: Provides a scalar metric summarizing overall trustworthiness.
 
-These tools are ideal for assessing and comparing the **reliability** of predictive models (e.g., DNNs) in classification scenarios.
+These tools are ideal for assessing and comparing the **reliability** of predictive models (e.g., DNNs).
 
 ---
 
