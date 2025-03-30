@@ -41,7 +41,7 @@ conda install numpy matplotlib scikit-learn
 ## Example Usage
 ```python
 import numpy as np
-from trustworthiness import Trustworthiness #This is how the package is imported.
+from trustquant import Trustworthiness #This is how the package is imported.
 
 # Example oracle and predictions
 oracle = np.array([0, 1, 2, 0, 1])  # True labels
