@@ -12,8 +12,6 @@ This repository provides a Python implementation of trustworthiness quantificati
 - **Trust Spectrum**: Visualizes trust densities across all classes.
 - **NetTrustScore (NTS)**: Provides a scalar metric summarizing overall trustworthiness.
 
-These tools are ideal for assessing and comparing the **reliability** of predictive models (e.g., DNNs).
-
 ---
 
 ## Installation
