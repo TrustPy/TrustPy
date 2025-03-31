@@ -62,6 +62,8 @@ print("NTS, overall  :", overall_nts)
 
 ```
 
+![Alt text](./assets/trust_spectrum.png)
+
 ## This code was developed as a part of my publications listed below:  
 1. Yanik, E., Kruger, U., Intes, X., Rahul, R., & De, S. (2023). Video-based formative and summative assessment of surgical tasks using deep learning. Scientific Reports, 13(1), 1038.
 2. Yanik, E., Ainam, J. P., Fu, Y., Schwaitzberg, S., Cavuoto, L., & De, S. (2024). Video-based skill acquisition assessment in laparoscopic surgery using deep learning. Global Surgical Education-Journal of the Association for Surgical Education, 3(1), 26.
