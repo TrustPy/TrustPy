@@ -18,7 +18,7 @@ This repository provides a Python implementation of trustworthiness quantificati
 ### Recommended: Install via Conda-Forge
 The easiest way to install nettrustscore is via Conda-Forge, which handles all dependencies automatically. Run the following command:
 ```bash
-conda install -c conda-forge nettrustscore
+conda install -c conda-forge nettrustscore (Pending)
 ```
 
 ### Alternative: Manual Installation
