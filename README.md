@@ -71,3 +71,14 @@ Example Plot for `trust_spectrum = True`
 3. Yanik, E., Schwaitzberg, S., Yang, G., Intes, X., Norfleet, J., Hackett, M., & De, S. (2024). One-shot skill assessment in high-stakes domains with limited data via meta learning. Computers in Biology and Medicine, 174, 108470. / Yanik, E., Schwaitzberg, S., Yang, J., Intes, X., & De, S. (2022). One-shot domain adaptation in video-based assessment of surgical skills. arXiv e-prints, arXiv-2301.
 4. Yanik, E., Intes, X., & De, S. (2024). Cognitive-Motor Integration in Assessing Bimanual Motor Skills. arXiv preprint arXiv:2404.10889.
 5. Ainam, J. P., Yanik, E., Rahul, R., Kunkes, T., Cavuoto, L., Clemency, B., ... & De, S. (2024). Deep Learning for Video-Based Assessment of Endotracheal Intubation Skills. arXiv preprint arXiv:2404.11727.
+
+## If you use this package in your research, please cite the following paper:
+
+```
+@article{wong2020much,
+  title={How much can we really trust you? towards simple, interpretable trust quantification metrics for deep neural networks},
+  author={Wong, Alexander and Wang, Xiao Yu and Hryniowski, Andrew},
+  journal={arXiv preprint arXiv:2009.05835},
+  year={2020}
+}
+```
