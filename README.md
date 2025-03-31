@@ -72,6 +72,9 @@ Example Plot for `trust_spectrum = True`
 4. Yanik, E., Intes, X., & De, S. (2024). Cognitive-Motor Integration in Assessing Bimanual Motor Skills. arXiv preprint arXiv:2404.10889.
 5. Ainam, J. P., Yanik, E., Rahul, R., Kunkes, T., Cavuoto, L., Clemency, B., ... & De, S. (2024). Deep Learning for Video-Based Assessment of Endotracheal Intubation Skills. arXiv preprint arXiv:2404.11727.
 
+## LICENCE
+This project is licensed under the MIT License. See the  file for details.
+
 ## If you use this package in your research, please cite the following paper:
 
 ```
