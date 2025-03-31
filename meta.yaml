@@ -1,17 +1,23 @@
 package:
   name: nettrustscore
   version: '1.0.0'
+
 source:
   path: .
+  
+build:
+  script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
+
 requirements:
   build:
-    - python
+    - python >=3.7
     - setuptools
   run:
-    - python
-    - numpy
-    - scikit-learn
-    - matplotlib
+    - python >=3.7
+    - numpy >=1.20
+    - scikit-learn >=1.0
+    - matplotlib >=3.0
+
 about:
   home: https://github.com/yaniker/nettrustscore-python
   license: MIT
