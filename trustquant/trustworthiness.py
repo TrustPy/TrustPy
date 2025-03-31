@@ -78,9 +78,9 @@ class Trustworthiness:
                 - x_range (np.ndarray): X-axis values for density curves, part of the trust spectrum.
         """
         class_nts, density_curves = [], []
-        x_range = np.linspace(0, 1, 100)  # Corrected from 100()
+        x_range = np.linspace(0, 1, 100)
         for target in qa_trust:
-            target = np.asarray(target)  # Corrected typo np.asrray
+            target = np.asarray(target)
             tm = np.mean(target) if len(target) > 0 else 0.0
             class_nts.append(tm)
             kde = KernelDensity(bandwidth=0.5 / np.sqrt(max(len(target), 1)), kernel='gaussian')
