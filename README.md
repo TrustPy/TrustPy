@@ -62,6 +62,7 @@ print("NTS, overall  :", overall_nts)
 
 ```
 
+Example Plot for `trust_spectrum = True`
 ![Alt text](./assets/trust_spectrum.png)
 
 ## This code was developed as a part of my publications listed below:  
