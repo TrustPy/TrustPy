@@ -1,1 +1,1 @@
-from .trustworthiness import Trustworthiness
+from .nts import nettrustscore
