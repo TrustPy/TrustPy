@@ -1,9 +1,6 @@
 # Trustworthiness Quantification
 
-This repository provides a Python implementation of trustworthiness quantification metrics for predictive models (e.g., DNNs) as proposed in (so far):   
-1.[How Much Can We Really Trust You? Towards Simple, Interpretable Trust Quantification Metrics for Deep Neural Networks](https://arxiv.org/pdf/2009.05835).
-2.[Where Does Trust Break Down? A Quantitative Trust Analysis of Deep Neural Networks via Trust Matrix and Conditional Trust Densities](https://arxiv.org/pdf/2009.14701).  
-The metrics evaluate a model's trustworthiness based on its confidence behavior in correct and incorrect predictions.  
+This repository provides a Python implementation of trustworthiness quantification metrics for predictive models (e.g., DNNs):   
 
 ###
 **The implementation is flexible and works out-the-box with any Python code that outputs SoftMax probabilities.**
@@ -100,7 +97,12 @@ I shared the codes for the plots [Python scripts for plots](./assets/plots.py) f
 ## Licence
 This project is licensed under the MIT License. See the  file for details.
 
-## If you use this package in your research, please cite the following papers accordingly:
+## References for the methods:  
+1.[How Much Can We Really Trust You? Towards Simple, Interpretable Trust Quantification Metrics for Deep Neural Networks](https://arxiv.org/pdf/2009.05835).  
+2.[Where Does Trust Break Down? A Quantitative Trust Analysis of Deep Neural Networks via Trust Matrix and Conditional Trust Densities](https://arxiv.org/pdf/2009.14701).  
+The metrics evaluate a model's trustworthiness based on its confidence behavior in correct and incorrect predictions.  
+
+## If you use this package in your research, please cite the following papers accordingly:  
 
 ```
 For NTS:
