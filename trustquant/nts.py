@@ -6,7 +6,7 @@ from sklearn.neighbors import KernelDensity
 class NTS:
     def __init__(self, oracle: np.ndarray, predictions: np.ndarray,
                  alpha: float = 1.0, beta: float = 1.0,
-                 trust_spectrum: bool = True) -> None:
+                 trust_spectrum: bool = False) -> None:
         """
         It computes trust scores for each class, estimates trust density using KDE, and calculates per-class and overall NetTrustScore (NTS). Optionally plots trust spectrum.
         
@@ -15,7 +15,7 @@ class NTS:
             predictions (np.ndarray): SoftMax probabilities predicted by a model (e.g., DNNs).
             alpha (float): Reward factor for correct predictions. Defaults to 1.0.
             beta (float): Penalty factor for incorrect predictions. Defaults to 1.0.
-            trust_spectrum (bool): If True plots the trust spectrum. Defaults to True.
+            trust_spectrum (bool): If True plots the trust spectrum. Defaults to False.
         Raises:
             TypeError: If inputs are of incorrect type.
             ValueError: If array shapes or values are invalid.
