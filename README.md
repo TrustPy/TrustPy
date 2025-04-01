@@ -1,6 +1,9 @@
-# NetTrustScore - NTS
+# Trustworthiness Quantification
 
-This repository provides a Python implementation of trustworthiness quantification metrics for predictive models (e.g., DNNs) as proposed in [How Much Can We Really Trust You? Towards Simple, Interpretable Trust Quantification Metrics for Deep Neural Networks](https://arxiv.org/pdf/2009.05835). The metrics evaluate a model's trustworthiness based on its confidence behavior in correct and incorrect predictions.  
+This repository provides a Python implementation of trustworthiness quantification metrics for predictive models (e.g., DNNs) as proposed in (so far):   
+1.[How Much Can We Really Trust You? Towards Simple, Interpretable Trust Quantification Metrics for Deep Neural Networks](https://arxiv.org/pdf/2009.05835).
+2.[Where Does Trust Break Down? A Quantitative Trust Analysis of Deep Neural Networks via Trust Matrix and Conditional Trust Densities](https://arxiv.org/pdf/2009.14701).  
+The metrics evaluate a model's trustworthiness based on its confidence behavior in correct and incorrect predictions.  
 
 ###
 **The implementation is flexible and works out-the-box with any Python code that outputs SoftMax probabilities.**
@@ -71,12 +74,13 @@ predictions = np.array([
 # Initialize with default parameters
 nts = NTS(oracle, predictions) #This is how you initialize. trust_spectrum = True will save trust spectrum to the directory under "trust_spectrum.png"
 nts_scores_dict = nts.compute() # Computes trustworthiness for each class and overall.
+print(nts_scores_dict)
 
 # FOR CONDITIONAL NETTRUSTSCORE #
 # Initialize with default parameters
 cnts = CNTS(oracle, predictions) #This is how you initialize. trust_spectrum = True will save trust spectrum to the directory under "trust_spectrum.png" and "conditional_trust_densities.png"
 cnts_scores_dict = cnts.compute() # Computes trustworthiness for each class and overall.
-
+print(cnts_scores_dict)
 ```
 
 Example Plot for Trust Spectrum (`trust_spectrum = True`)
@@ -96,13 +100,17 @@ I shared the codes for the plots [Python scripts for plots](./assets/plots.py) f
 ## Licence
 This project is licensed under the MIT License. See the  file for details.
 
-## If you use this package in your research, please cite the following paper:
+## If you use this package in your research, please cite the following papers accordingly:
 
 ```
+For NTS:
 @article{wong2020much,
   title={How much can we really trust you? towards simple, interpretable trust quantification metrics for deep neural networks},
   author={Wong, Alexander and Wang, Xiao Yu and Hryniowski, Andrew},
   journal={arXiv preprint arXiv:2009.05835},
   year={2020}
 }
+
+For conditional NTS:
+
 ```
