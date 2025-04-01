@@ -79,8 +79,11 @@ cnts_scores_dict = cnts.compute() # Computes trustworthiness for each class and 
 
 ```
 
-Example Plot for `trust_spectrum = True`
+Example Plot for Trust Spectrum (`trust_spectrum = True`)
 ![Alt text](./assets/trust_spectrum.png)
+
+Example Plot for Conditional Trust Spectrum (`trust_spectrum = True`)
+![Alt text](./assets/conditional_trust_densities.png)
 
 ## This code was developed as a part of my publications listed below:  
 1. Yanik, E., Kruger, U., Intes, X., Rahul, R., & De, S. (2023). Video-based formative and summative assessment of surgical tasks using deep learning. Scientific Reports, 13(1), 1038.
