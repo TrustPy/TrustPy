@@ -32,20 +32,20 @@ class NTS:
                 - Keys are 'class_0', 'class_1', ..., 'class_n', 'overall'
         """
         n_classes = self.predictions.shape[1]
-        qa_trust = self.compute_question_answer_trust(n_classes)
-        class_nts, density_curves, x_range = self.compute_trust_density(qa_trust)
+        qa_trust = self._compute_question_answer_trust(n_classes)
+        class_nts, density_curves, x_range = self._compute_trust_density(qa_trust)
         
         if self.trust_spectrum:
-            self.plot_trust_spectrum(class_nts, density_curves, x_range, n_classes)
+            self._plot_trust_spectrum(class_nts, density_curves, x_range, n_classes)
             
         # Compute overall NTS
-        overall_nts = self.compute_overall_NTS(class_nts, qa_trust)
+        overall_nts = self._compute_overall_NTS(class_nts, qa_trust)
         
         nts_dict = {f'class_{i}': f'{nts:.3f}' for i, nts in enumerate(class_nts)}
         nts_dict['overall'] = f'{overall_nts:.3f}'
         return nts_dict
 
-    def compute_question_answer_trust(self, n_classes: int) -> list:
+    def _compute_question_answer_trust(self, n_classes: int) -> list:
         """
         Compute the question-answer scores for each class.
 
@@ -67,7 +67,7 @@ class NTS:
                 qa_trust[true_label].append((1 - max_prob)**self.beta)
         return qa_trust
 
-    def compute_trust_density(self, qa_trust: list) -> tuple:
+    def _compute_trust_density(self, qa_trust: list) -> tuple:
         """
         Compute the NTS and trust density curves for each class.
 
@@ -94,7 +94,7 @@ class NTS:
             density_curves.append(np.exp(logprob))
         return class_nts, density_curves, x_range
 
-    def plot_trust_spectrum(self, class_nts: list, density_curves: list, x_range: np.ndarray, n_classes: int) -> None:
+    def _plot_trust_spectrum(self, class_nts: list, density_curves: list, x_range: np.ndarray, n_classes: int) -> None:
         """
         Plot the trust density curves for each class, visualizing the trust spectrum.
 
@@ -123,7 +123,7 @@ class NTS:
         plt.savefig(os.path.join('./trust_spectrum.png'))
         plt.close()
 
-    def compute_overall_NTS(self, class_nts: list, qa_trust: list) -> float:
+    def _compute_overall_NTS(self, class_nts: list, qa_trust: list) -> float:
         """
         Compute the overall NTS across all classes.
 

@@ -36,20 +36,20 @@ class CNTS:
                 - 'overall_nts': the overall NTS across all classes
         """
         n_classes = self.predictions.shape[1]
-        qa_trust = self.compute_question_answer_trust(n_classes)
-        correct_trust, incorrect_trust = self.compute_conditional_trust(n_classes)
+        qa_trust = self._compute_question_answer_trust(n_classes)
+        correct_trust, incorrect_trust = self._compute_conditional_trust(n_classes)
 
         # Compute overall NTS
-        class_nts, density_curves, x_range = self.compute_trust_density(qa_trust)
-        overall_nts = self.compute_overall_NTS(class_nts, qa_trust)
+        class_nts, density_curves, x_range = self._compute_trust_density(qa_trust)
+        overall_nts = self._compute_overall_NTS(class_nts, qa_trust)
 
         # Compute conditional NTS
         cond_nts_correct = [np.mean(scores) if scores else 0.0 for scores in correct_trust]
         cond_nts_incorrect = [np.mean(scores) if scores else 0.0 for scores in incorrect_trust]
 
         if self.trust_spectrum:
-            self.plot_trust_spectrum(class_nts, density_curves, x_range, n_classes)
-            self.plot_conditional_trust_densities(correct_trust, incorrect_trust, n_classes)
+            self._plot_trust_spectrum(class_nts, density_curves, x_range, n_classes)
+            self._plot_conditional_trust_densities(correct_trust, incorrect_trust, n_classes)
 
         # Construct the dictionary
         nts_dict = {}
@@ -61,7 +61,7 @@ class CNTS:
 
         return nts_dict
 
-    def compute_question_answer_trust(self, n_classes: int) -> list:
+    def _compute_question_answer_trust(self, n_classes: int) -> list:
         """
         Compute the question-answer trust scores for each class.
 
@@ -83,7 +83,7 @@ class CNTS:
                 qa_trust[true_label].append((1 - max_prob)**self.beta)
         return qa_trust
 
-    def compute_conditional_trust(self, n_classes: int) -> tuple:
+    def _compute_conditional_trust(self, n_classes: int) -> tuple:
         """
         Compute trust scores for correct and incorrect predictions per class.
 
@@ -105,7 +105,7 @@ class CNTS:
                 incorrect_trust[true_label].append((1 - max_prob)**self.beta)
         return correct_trust, incorrect_trust
 
-    def compute_trust_density(self, qa_trust: list) -> tuple:
+    def _compute_trust_density(self, qa_trust: list) -> tuple:
         """
         Compute the NTS and trust density curves for each class.
 
@@ -130,7 +130,7 @@ class CNTS:
             density_curves.append(np.exp(logprob))
         return class_nts, density_curves, x_range
 
-    def plot_trust_spectrum(self, class_nts: list, density_curves: list, x_range: np.ndarray, n_classes: int) -> None:
+    def _plot_trust_spectrum(self, class_nts: list, density_curves: list, x_range: np.ndarray, n_classes: int) -> None:
         """
         Plot the trust density curves for each class.
 
@@ -157,7 +157,7 @@ class CNTS:
         plt.savefig(os.path.join('./trust_spectrum.png'))
         plt.close()
 
-    def plot_conditional_trust_densities(self, correct_trust: list, incorrect_trust: list, n_classes: int) -> None:
+    def _plot_conditional_trust_densities(self, correct_trust: list, incorrect_trust: list, n_classes: int) -> None:
         """
         Plot the conditional trust density curves for correct and incorrect predictions per class.
 
@@ -193,7 +193,7 @@ class CNTS:
         plt.savefig(os.path.join('./conditional_trust_densities.png'))
         plt.close()
 
-    def compute_overall_NTS(self, class_nts: list, qa_trust: list) -> float:
+    def _compute_overall_NTS(self, class_nts: list, qa_trust: list) -> float:
         """
         Compute the overall NTS across all classes.
 
