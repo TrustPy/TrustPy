@@ -35,7 +35,7 @@ class NTS:
         beta = float(beta)
         assert alpha > 0, 'alpha must be positive'
         assert beta > 0, 'beta must be positive'
-        assert np.all((predictions >= 0) & (predictions <= 1)), 'predictions must be between 0 and 1'
+        assert np.all((predictions >= 0) & (predictions <= 1)), 'Predictions must be between 0 and 1'
         assert np.allclose(predictions.sum(axis = 1), 1, atol = 1e-5), 'Each row of SoftMax predictions must sum to 1'
         
         self.oracle = oracle
@@ -52,12 +52,9 @@ class NTS:
             dict: A dictionary containing NTS for each class and the overall NTS
                 - Keys are 'class_0', 'class_1', ..., 'class_n', 'overall'
         """
-        n_classes = self.predictions.shape[1]
-        assert n_classes > 0, 'Number of classes must be positive'
-        
+        n_classes = self.predictions.shape[1]        
         qa_trust = self._compute_question_answer_trust(n_classes)
-        assert len(qa_trust) == n_classes, f'qa_trust length ({len(qa_trust)}) must match n_classes ({n_classes})'
-        
+
         class_nts, density_curves, x_range = self._compute_trust_density(qa_trust)
         
         if self.trust_spectrum:
@@ -81,7 +78,6 @@ class NTS:
             list: List of lists. Each sublist includes trust scores for a class.
         """
         predicted_class = np.argmax(self.predictions, axis=1)
-        assert len(predicted_class) == len(self.oracle), 'Mismatch between predicted_class and oracle/actual class lengths.'
         
         qa_trust = [[] for _ in range(n_classes)]
         for i in range(self.oracle.shape[0]):
