@@ -1,1 +1,2 @@
-from .nts import nettrustscore
+from .nts import NTS
+from .cond_nts import CNTS
