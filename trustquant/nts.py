@@ -16,7 +16,28 @@ class NTS:
             alpha (float): Reward factor for correct predictions. Defaults to 1.0.
             beta (float): Penalty factor for incorrect predictions. Defaults to 1.0.
             trust_spectrum (bool): If True plots the trust spectrum. Defaults to True.
+        Raises:
+            TypeError: If inputs are of incorrect type.
+            ValueError: If array shapes or values are invalid.
         """
+        
+        assert isinstance(oracle, np.ndarray), 'Oracle/Actual Classes must be a NumPy array'
+        assert isinstance(predictions, np.ndarray), 'Predictions/Predicted Classes must be a NumPy array'
+        assert isinstance(alpha, (int, float)), 'alpha must be a number'
+        assert isinstance(beta, (int, float)), 'beta must be a number'
+        assert isinstance(trust_spectrum, bool), 'trust_spectrum must be True/False'
+        
+        assert oracle.ndim == 1, 'Oracle/Actual Classes must be a 1D array'
+        assert predictions.ndim == 2, 'Predictions/Predicted Classes must be a 1D array'
+        assert oracle.shape[0] == predictions.shape[0], (f'Number of samples mismatch: oracle ({oracle.shape[0]}) vs predictions ({predictions.shape[0]})')
+        
+        alpha = float(alpha)
+        beta = float(beta)
+        assert alpha > 0, 'alpha must be positive'
+        assert beta > 0, 'beta must be positive'
+        assert np.all((predictions >= 0) & (predictions <= 1)), 'predictions must be between 0 and 1'
+        assert np.allclose(predictions.sum(axis = 1), 1, atol = 1e-5), 'Each row of SoftMax predictions must sum to 1'
+        
         self.oracle = oracle
         self.predictions = predictions
         self.alpha = alpha
@@ -32,7 +53,11 @@ class NTS:
                 - Keys are 'class_0', 'class_1', ..., 'class_n', 'overall'
         """
         n_classes = self.predictions.shape[1]
+        assert n_classes > 0, 'Number of classes must be positive'
+        
         qa_trust = self._compute_question_answer_trust(n_classes)
+        assert len(qa_trust) == n_classes, f'qa_trust length ({len(qa_trust)}) must match n_classes ({n_classes})'
+        
         class_nts, density_curves, x_range = self._compute_trust_density(qa_trust)
         
         if self.trust_spectrum:
@@ -56,6 +81,8 @@ class NTS:
             list: List of lists. Each sublist includes trust scores for a class.
         """
         predicted_class = np.argmax(self.predictions, axis=1)
+        assert len(predicted_class) == len(self.oracle), 'Mismatch between predicted_class and oracle/actual class lengths.'
+        
         qa_trust = [[] for _ in range(n_classes)]
         for i in range(self.oracle.shape[0]):
             true_label = self.oracle[i]
