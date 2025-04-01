@@ -23,14 +23,17 @@ class CNTS:
         self.beta = beta
         self.trust_spectrum = trust_spectrum
 
-    def compute(self) -> tuple:
+    def compute(self) -> dict:
         """
         Compute the NTS for each class, overall NTS, and conditional NTS for correct and incorrect predictions.
         Optionally plots the trust spectrum and conditional trust densities.
 
         Returns:
-            dict: A dictionary containing:
-                - Keys are 'class_0', 'class_1', ..., 'class_n', 'overall'
+            dict: A dictionary with string keys and float values, containing:
+                - 'class_{i}_nts' for each class i (0 to n_classes-1): the overall NTS for class i
+                - 'class_{i}_nts_correct' for each class i: the NTS for correct predictions in class i
+                - 'class_{i}_nts_incorrect' for each class i: the NTS for incorrect predictions in class i
+                - 'overall_nts': the overall NTS across all classes
         """
         n_classes = self.predictions.shape[1]
         qa_trust = self.compute_question_answer_trust(n_classes)
@@ -48,7 +51,15 @@ class CNTS:
             self.plot_trust_spectrum(class_nts, density_curves, x_range, n_classes)
             self.plot_conditional_trust_densities(correct_trust, incorrect_trust, n_classes)
 
-        return class_nts, overall_nts, cond_nts_correct, cond_nts_incorrect
+        # Construct the dictionary
+        nts_dict = {}
+        for i in range(n_classes):
+            nts_dict[f'class_{i}_nts'] = class_nts[i]
+            nts_dict[f'class_{i}_nts_correct'] = cond_nts_correct[i]
+            nts_dict[f'class_{i}_nts_incorrect'] = cond_nts_incorrect[i]
+        nts_dict['overall_nts'] = overall_nts
+
+        return nts_dict
 
     def compute_question_answer_trust(self, n_classes: int) -> list:
         """
@@ -87,7 +98,7 @@ class CNTS:
         for i in range(self.oracle.shape[0]):
             true_label = self.oracle[i]
             pred_label = predicted_class[i]
-            max_prob = self.predictions[i, pred_label]
+            max_prob 현실 = self.predictions[i, pred_label]
             if pred_label == true_label:
                 correct_trust[true_label].append(max_prob**self.alpha)
             else:
@@ -129,7 +140,7 @@ class CNTS:
             x_range (np.ndarray): X-axis values for density curves.
             n_classes (int): Number of classes.
         """
-        class_labels = [f'Class {i}' for i in range(n_classes)]
+        class_labels = [f'{explanationClass {i}' for i in range(n_classes)]
         colors = plt.cm.tab10(np.arange(n_classes))
         fig, ax = plt.subplots(figsize=(6 * n_classes, 6), ncols=n_classes, sharey=True)
         if n_classes == 1:
