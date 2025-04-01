@@ -8,47 +8,60 @@ class Trustworthiness:
                  alpha: float = 1.0, beta: float = 1.0,
                  trust_spectrum: bool = True) -> None:
         """
-        It computes trust scores for each class, estimates trust density using KDE, and calculates per-class and overall NetTrustScore (NTS). Optionally plots trust spectrum.
-        
+        Initializes the Trustworthiness class for computing trust scores, densities, and NTS.
+
         Args:
             oracle (np.ndarray): True labels.
-            predictions (np.ndarray): SoftMax probabilities predicted by a model (e.g., DNNs).
+            predictions (np.ndarray): SoftMax probabilities predicted by a model.
             alpha (float): Reward factor for correct predictions. Defaults to 1.0.
             beta (float): Penalty factor for incorrect predictions. Defaults to 1.0.
-            trust_spectrum (bool): If True plots the trust spectrum. Defaults to True.
+            trust_spectrum (bool): If True, plots the trust spectrum. Defaults to True.
         """
         self.oracle = oracle
         self.predictions = predictions
         self.alpha = alpha
         self.beta = beta
         self.trust_spectrum = trust_spectrum
-        
+
     def compute_NTS(self) -> tuple:
         """
-        Compute the NTS for each class and overall, with optional trust spectrum plot.
-        
+        Compute the NTS for each class, overall NTS, and conditional NTS for correct and incorrect predictions.
+        Optionally plots the trust spectrum and conditional trust densities.
+
         Returns:
-            tuple: (class_nts, overall_nts)
-                - class_nts (list): NTS for each class.
-                - overall_nts (float): Overall NTS.
+            tuple: (class_nts, overall_nts, cond_nts_correct, cond_nts_incorrect)
+                - class_nts (list): Overall NTS for each class.
+                - overall_nts (float): Overall NTS across all classes.
+                - cond_nts_correct (list): NTS for correct predictions per class.
+                - cond_nts_incorrect (list): NTS for incorrect predictions per class.
         """
         n_classes = self.predictions.shape[1]
         qa_trust = self.compute_question_answer_trust(n_classes)
+        correct_trust, incorrect_trust = self.compute_conditional_trust(n_classes)
+
+        # Compute overall NTS
         class_nts, density_curves, x_range = self.compute_trust_density(qa_trust)
+        overall_nts = self.compute_overall_NTS(class_nts, qa_trust)
+
+        # Compute conditional NTS
+        cond_nts_correct = [np.mean(scores) if scores else 0.0 for scores in correct_trust]
+        cond_nts_incorrect = [np.mean(scores) if scores else 0.0 for scores in incorrect_trust]
+
         if self.trust_spectrum:
             self.plot_trust_spectrum(class_nts, density_curves, x_range, n_classes)
-        overall_nts = self.compute_overall_NTS(class_nts, qa_trust)
-        return class_nts, overall_nts
+            self.plot_conditional_trust_densities(correct_trust, incorrect_trust, n_classes)
+
+        return class_nts, overall_nts, cond_nts_correct, cond_nts_incorrect
 
     def compute_question_answer_trust(self, n_classes: int) -> list:
         """
-        Compute the question-answer scores for each class.
+        Compute the question-answer trust scores for each class.
 
         Args:
             n_classes (int): Number of classes.
 
         Returns:
-            list: List of lists. Each sublist includes trust scores for a class.
+            list: List of lists, each containing trust scores for a class.
         """
         predicted_class = np.argmax(self.predictions, axis=1)
         qa_trust = [[] for _ in range(n_classes)]
@@ -62,11 +75,31 @@ class Trustworthiness:
                 qa_trust[true_label].append((1 - max_prob)**self.beta)
         return qa_trust
 
+    def compute_conditional_trust(self, n_classes: int) -> tuple:
+        """
+        Compute trust scores for correct and incorrect predictions per class.
+
+        Returns:
+            tuple: (correct_trust, incorrect_trust)
+                - correct_trust: List of trust scores where predictions are correct, per class.
+                - incorrect_trust: List of trust scores where predictions are incorrect, per class.
+        """
+        predicted_class = np.argmax(self.predictions, axis=1)
+        correct_trust = [[] for _ in range(n_classes)]
+        incorrect_trust = [[] for _ in range(n_classes)]
+        for i in range(self.oracle.shape[0]):
+            true_label = self.oracle[i]
+            pred_label = predicted_class[i]
+            max_prob = self.predictions[i, pred_label]
+            if pred_label == true_label:
+                correct_trust[true_label].append(max_prob**self.alpha)
+            else:
+                incorrect_trust[true_label].append((1 - max_prob)**self.beta)
+        return correct_trust, incorrect_trust
+
     def compute_trust_density(self, qa_trust: list) -> tuple:
         """
         Compute the NTS and trust density curves for each class.
-
-        This method computes the per-class NTS and the density curves, aligning with 'trust density' (density estimate) and contributing to 'trust spectrum' (distribution of trust scores).
 
         Args:
             qa_trust (list): List of trust scores for each class.
@@ -74,8 +107,8 @@ class Trustworthiness:
         Returns:
             tuple: (class_nts, density_curves, x_range)
                 - class_nts (list): NTS for each class.
-                - density_curves (list): Density curves for each class, representing trust density.
-                - x_range (np.ndarray): X-axis values for density curves, part of the trust spectrum.
+                - density_curves (list): Density curves for each class.
+                - x_range (np.ndarray): X-axis values for density curves.
         """
         class_nts, density_curves = [], []
         x_range = np.linspace(0, 1, 100)
@@ -91,9 +124,7 @@ class Trustworthiness:
 
     def plot_trust_spectrum(self, class_nts: list, density_curves: list, x_range: np.ndarray, n_classes: int) -> None:
         """
-        Plot the trust density curves for each class, visualizing the trust spectrum.
-
-        This corresponds to the 'trust spectrum' in the paper, showing the distribution of trust scores via density curves.
+        Plot the trust density curves for each class.
 
         Args:
             class_nts (list): NTS for each class.
@@ -118,6 +149,42 @@ class Trustworthiness:
         plt.savefig(os.path.join('./trust_spectrum.png'))
         plt.close()
 
+    def plot_conditional_trust_densities(self, correct_trust: list, incorrect_trust: list, n_classes: int) -> None:
+        """
+        Plot the conditional trust density curves for correct and incorrect predictions per class.
+
+        Args:
+            correct_trust (list): Trust scores for correct predictions per class.
+            incorrect_trust (list): Trust scores for incorrect predictions per class.
+            n_classes (int): Number of classes.
+        """
+        x_range = np.linspace(0, 1, 100)
+        fig, ax = plt.subplots(figsize=(6 * n_classes, 6), ncols=n_classes, sharey=True)
+        if n_classes == 1:
+            ax = [ax]
+        for c in range(n_classes):
+            # Correct predictions
+            kde_corr = KernelDensity(bandwidth=0.5 / np.sqrt(max(len(correct_trust[c]), 1)), kernel='gaussian')
+            kde_corr.fit(np.array(correct_trust[c] or [0.5])[:, None])
+            logprob_corr = kde_corr.score_samples(x_range[:, None])
+            ax[c].plot(x_range, np.exp(logprob_corr), label='Correct', color='blue')
+
+            # Incorrect predictions
+            kde_incorr = KernelDensity(bandwidth=0.5 / np.sqrt(max(len(incorrect_trust[c]), 1)), kernel='gaussian')
+            kde_incorr.fit(np.array(incorrect_trust[c] or [0.5])[:, None])
+            logprob_incorr = kde_incorr.score_samples(x_range[:, None])
+            ax[c].plot(x_range, np.exp(logprob_incorr), label='Incorrect', color='red')
+
+            ax[c].set_title(f'Class {c}', fontsize=24)
+            ax[c].legend()
+            ax[c].set_xlabel('Question-Answer Trust', fontsize=24, fontweight='bold')
+            if c == 0:
+                ax[c].set_ylabel('Trust Density', fontsize=24, fontweight='bold')
+            ax[c].tick_params(labelsize=24)
+        plt.tight_layout()
+        plt.savefig(os.path.join('./conditional_trust_densities.png'))
+        plt.close()
+
     def compute_overall_NTS(self, class_nts: list, qa_trust: list) -> float:
         """
         Compute the overall NTS across all classes.
@@ -132,5 +199,3 @@ class Trustworthiness:
         overall_nts = sum(tm * len(ts) for tm, ts in zip(class_nts, qa_trust))
         total_samples = sum(len(ts) for ts in qa_trust)
         return overall_nts / total_samples if total_samples > 0 else 0.0
-
-    
