@@ -29,11 +29,8 @@ class CNTS:
         Optionally plots the trust spectrum and conditional trust densities.
 
         Returns:
-            tuple: (class_nts, overall_nts, cond_nts_correct, cond_nts_incorrect)
-                - class_nts (list): Overall NTS for each class.
-                - overall_nts (float): Overall NTS across all classes.
-                - cond_nts_correct (list): NTS for correct predictions per class.
-                - cond_nts_incorrect (list): NTS for incorrect predictions per class.
+            dict: A dictionary containing:
+                - Keys are 'class_0', 'class_1', ..., 'class_n', 'overall'
         """
         n_classes = self.predictions.shape[1]
         qa_trust = self.compute_question_answer_trust(n_classes)

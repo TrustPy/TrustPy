@@ -23,14 +23,13 @@ class NTS:
         self.beta = beta
         self.trust_spectrum = trust_spectrum
         
-    def compute(self) -> tuple:
+    def compute(self) -> dict:
         """
         Compute the NTS for each class and overall, with optional trust spectrum plot.
         
         Returns:
-            tuple: (class_nts, overall_nts)
-                - class_nts (list): NTS for each class.
-                - overall_nts (float): Overall NTS.
+            dict: A dictionary containing NTS for each class and the overall NTS
+                - Keys are 'class_0', 'class_1', ..., 'class_n', 'overall'
         """
         n_classes = self.predictions.shape[1]
         qa_trust = self.compute_question_answer_trust(n_classes)
@@ -41,7 +40,10 @@ class NTS:
             
         # Compute overall NTS
         overall_nts = self.compute_overall_NTS(class_nts, qa_trust)
-        return class_nts, overall_nts
+        
+        nts_dict = {f'class_{i}': f'{nts:.3f}' for i, nts in enumerate(class_nts)}
+        nts_dict['overall'] = f'{overall_nts:.3f}'
+        return nts_dict
 
     def compute_question_answer_trust(self, n_classes: int) -> list:
         """
