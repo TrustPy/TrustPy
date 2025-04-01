@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.neighbors import KernelDensity
 
-class nettrustscore:
+class NTS:
     def __init__(self, oracle: np.ndarray, predictions: np.ndarray,
                  alpha: float = 1.0, beta: float = 1.0,
                  trust_spectrum: bool = True) -> None:
@@ -23,7 +23,7 @@ class nettrustscore:
         self.beta = beta
         self.trust_spectrum = trust_spectrum
         
-    def compute_NTS(self) -> tuple:
+    def compute(self) -> tuple:
         """
         Compute the NTS for each class and overall, with optional trust spectrum plot.
         
@@ -35,8 +35,11 @@ class nettrustscore:
         n_classes = self.predictions.shape[1]
         qa_trust = self.compute_question_answer_trust(n_classes)
         class_nts, density_curves, x_range = self.compute_trust_density(qa_trust)
+        
         if self.trust_spectrum:
             self.plot_trust_spectrum(class_nts, density_curves, x_range, n_classes)
+            
+        # Compute overall NTS
         overall_nts = self.compute_overall_NTS(class_nts, qa_trust)
         return class_nts, overall_nts
 

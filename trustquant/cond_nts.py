@@ -3,12 +3,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.neighbors import KernelDensity
 
-class Trustworthiness:
+class CNTS:
     def __init__(self, oracle: np.ndarray, predictions: np.ndarray,
                  alpha: float = 1.0, beta: float = 1.0,
                  trust_spectrum: bool = True) -> None:
         """
-        Initializes the Trustworthiness class for computing trust scores, densities, and NTS.
+        Initializes the Trustworthiness class for computing trust scores, densities, and NTS. Optionally plots trust spectrum.
 
         Args:
             oracle (np.ndarray): True labels.
@@ -23,7 +23,7 @@ class Trustworthiness:
         self.beta = beta
         self.trust_spectrum = trust_spectrum
 
-    def compute_NTS(self) -> tuple:
+    def compute(self) -> tuple:
         """
         Compute the NTS for each class, overall NTS, and conditional NTS for correct and incorrect predictions.
         Optionally plots the trust spectrum and conditional trust densities.
