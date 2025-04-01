@@ -51,27 +51,31 @@ cd nettrustscore-python
 
 ## Example Usage
 ```python
+from trustquant import NTS, CNTS #This is how the package is imported.
 import numpy as np
-from trustquant import Trustworthiness #This is how the package is imported.
 
 # Example oracle and predictions
-oracle = np.array([0, 1, 2, 0, 1])  # True labels
+oracle = np.array([0, 0, 1, 2, 2, 0, 1])  # True labels
 predictions = np.array([
     [0.8, 0.1, 0.1],  # Correct, high confidence
+    [1.0, 0.0, 0.0],  # Correct, high confidence
     [0.2, 0.7, 0.1],  # Correct, high confidence
     [0.1, 0.2, 0.7],  # Correct, high confidence
-    [0.1, 0.8, 0.1],  # Incorrect, high confidence for wrong class
+    [0.1, 0.4, 0.5],  # Correct, lower confidence
+    [0.1, 0.8, 0.1],  # Incorrect, high confidence
     [0.3, 0.3, 0.4]   # Incorrect, low confidence
 ]
 ) #Replace this with your model's predictions (`predictions = model.predict()`)
 
+# FOR NETTRUSTSCORE #
 # Initialize with default parameters
-trust = Trustworthiness(oracle, predictions) #This is how you initialize.
+nts = NTS(oracle, predictions) #This is how you initialize. trust_spectrum = True will save trust spectrum to the directory under "trust_spectrum.png"
+nts_scores_dict = nts.compute() # Computes trustworthiness for each class and overall.
 
-# Compute trustworthiness metrics. trust_spectrum = True if the user wants spectrum plot to be saved.
-class_nts, overall_nts = trust.compute_NTS(trust_spectrum = True) #This generates the desired NTS values.
-print("NTS, per class:", class_nts)
-print("NTS, overall  :", overall_nts)
+# FOR CONDITIONAL NETTRUSTSCORE #
+# Initialize with default parameters
+cnts = CNTS(oracle, predictions) #This is how you initialize. trust_spectrum = True will save trust spectrum to the directory under "trust_spectrum.png" and "conditional_trust_densities.png"
+cnts_scores_dict = cnts.compute() # Computes trustworthiness for each class and overall.
 
 ```
 
