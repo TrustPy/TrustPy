@@ -85,7 +85,7 @@ Example Plot for Trust Spectrum (`trust_spectrum = True`)
 Example Plot for Conditional Trust Spectrum (`trust_spectrum = True`)
 ![Alt text](./assets/conditional_trust_densities.png)
 
-I shared the codes for the plots as plots.py under assets for users to modify as needed.
+I shared the codes for the plots ![Alt text](./assets/plots.py) for users to modify as needed.
 
 ## This code was developed as a part of my publications listed below:  
 1. Yanik, E., Kruger, U., Intes, X., Rahul, R., & De, S. (2023). Video-based formative and summative assessment of surgical tasks using deep learning. Scientific Reports, 13(1), 1038.
