@@ -112,5 +112,11 @@ For NTS:
 }
 
 For conditional NTS:
+@article{hryniowski2020does,
+  title={Where does trust break down? A quantitative trust analysis of deep neural networks via trust matrix and conditional trust densities},
+  author={Hryniowski, Andrew and Wang, Xiao Yu and Wong, Alexander},
+  journal={arXiv preprint arXiv:2009.14701},
+  year={2020}
+}
 
 ```
