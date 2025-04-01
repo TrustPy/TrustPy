@@ -140,7 +140,7 @@ class CNTS:
             x_range (np.ndarray): X-axis values for density curves.
             n_classes (int): Number of classes.
         """
-        class_labels = [f'CLass {i}' for i in range(n_classes)]
+        class_labels = [f'Class {i}' for i in range(n_classes)]
         colors = plt.cm.tab10(np.arange(n_classes))
         fig, ax = plt.subplots(figsize=(6 * n_classes, 6), ncols=n_classes, sharey=True)
         if n_classes == 1:
