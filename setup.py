@@ -1,12 +1,24 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='trustquant',
-    version='1.0.0',
-    packages=find_packages(),
-    install_requires=['numpy', 'scikit-learn', 'matplotlib'],
+    name='nettrustscore',
+    version='2.0.2',
     author='Erim_Yanik',
+    author_email='erimyanik@gmail.com',
     description='Trustworthiness metrics for Softmax predictive models',
-    url='https://github.com/yaniker/trust-quantification-metrics-for-deep-neural-networks-python',
-    license='MIT',
+    long_description=open('README.md').read(),
+    long_description_content_type='text/markdown',
+    url='https://github.com/yaniker/nettrustscore-python',
+    packages=find_packages(),
+    install_requires=[
+        'numpy>=1.20',
+        'scikit-learn>=1.0',
+        'matplotlib>=3.0'
+    ],
+    classifiers=[
+        "Programming Language :: Python :: 3",
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent",
+    ],
+    python_requires='>=3.7',
 )
