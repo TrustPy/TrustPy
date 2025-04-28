@@ -15,10 +15,16 @@ This repository provides a Python implementation of trustworthiness quantificati
 ---
 
 ## Installation
-### Recommended: Install via Conda-Forge
+### Recommended 1: Install via Conda-Forge
 The easiest way to install nettrustscore is via Conda-Forge, which handles all dependencies automatically. Run the following command:
 ```bash
 conda install -c conda-forge nettrustscore
+```
+
+### Recommended 2: Install via PyPI (pip install)
+If you prefer using pip (PyPI), you can install directly:
+```bash
+pip install nettrustscore
 ```
 
 ### Alternative: Manual Installation
@@ -29,18 +35,19 @@ Install Dependencies
 - **Matplotlib**: For plotting the trust spectrum.
 - **Scikit-learn**: For Kernel Density Estimation (KDE) in trust density estimation.
 
-Install them via pip:
-
-```bash
-pip install numpy matplotlib scikit-learn
-```
-
-or
-
 Install them via conda:
 
 ```bash
 conda install numpy matplotlib scikit-learn
+```
+
+or
+
+
+Install them via pip:
+
+```bash
+pip install numpy matplotlib scikit-learn
 ```
 
 Clone the Repository
