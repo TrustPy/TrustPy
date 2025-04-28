@@ -45,7 +45,7 @@ def plot_conditional_trust_densities(correct_trust: list, incorrect_trust: list,
         fig, ax = plt.subplots(figsize=(6 * n_classes, 6), ncols=n_classes, sharey=True)
         if n_classes == 1:
             ax = [ax]
-        for c in range(n_classes):∂∂∂
+        for c in range(n_classes):
             # Correct predictions
             kde_corr = KernelDensity(bandwidth=0.5 / np.sqrt(max(len(correct_trust[c]), 1)), kernel='gaussian')
             kde_corr.fit(np.array(correct_trust[c] or [0.5])[:, None])
