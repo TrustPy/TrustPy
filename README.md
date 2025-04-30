@@ -1,18 +1,10 @@
-# Trustworthiness Quantification
+# TrustPy - Trustworthiness Python
 
 This repository provides a Python implementation of trustworthiness quantification metrics for predictive models (e.g., DNNs):   
 
 ###
-**The implementation is flexible and works out-the-box with any Python code that outputs SoftMax probabilities.**
+**The implementation is flexible and works out-the-box.**
 ###
-
-### Key Features
-- **Question-Answer Trust**: Computes trust scores per sample based on prediction correctness and softmax probability.
-- **Trust Density**: Estimates the distribution of trust scores per class using Kernel Density Estimation (KDE).
-- **Trust Spectrum**: Visualizes trust densities across all classes.
-- **NetTrustScore (NTS)**: Provides a scalar metric summarizing overall trustworthiness.
-
----
 
 ## Installation
 ### Recommended 1: Install via Conda-Forge
