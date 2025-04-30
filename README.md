@@ -1,6 +1,6 @@
 # TrustPy - Trustworthiness Python
 
-This repository provides a Python implementation of trustworthiness quantification metrics for predictive models (e.g., DNNs):   
+Conda-Forge / PyPI package providing a Python implementation of trustworthiness quantification metrics for predictive models (e.g., DNNs):   
 
 ###
 **The implementation is flexible and works out-the-box.**
