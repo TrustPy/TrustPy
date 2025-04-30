@@ -50,7 +50,7 @@ cd TrustPy
 
 ## Example Usage
 ```python
-from trustquant import NTS, CNTS #This is how the package is imported.
+from trustpy import NTS, CNTS #This is how the package is imported.
 import numpy as np
 
 # Example oracle and predictions
