@@ -8,15 +8,15 @@ Conda-Forge / PyPI package providing a Python implementation of trustworthiness 
 
 ## Installation
 ### Recommended 1: Install via Conda-Forge
-The easiest way to install nettrustscore is via Conda-Forge, which handles all dependencies automatically. Run the following command:
+The easiest way to install trustpy-tools is via Conda-Forge, which handles all dependencies automatically. Run the following command:
 ```bash
-conda install -c conda-forge nettrustscore
+conda install -c conda-forge trustpy-tools
 ```
 
 ### Recommended 2: Install via PyPI (pip install)
 If you prefer using pip (PyPI), you can install directly:
 ```bash
-pip install nettrustscore
+pip install trustpy-tools
 ```
 
 ### Alternative: Manual Installation
@@ -44,8 +44,8 @@ pip install numpy matplotlib scikit-learn
 
 Clone the Repository
 ```bash
-git clone https://github.com/yaniker/nettrustscore-python.git
-cd nettrustscore-python
+git clone https://github.com/yaniker/TrustPy.git
+cd TrustPy
 ```
 
 ## Example Usage
@@ -87,16 +87,10 @@ Example Plot for Conditional Trust Spectrum (`trust_spectrum = True`)
 
 I shared the codes for the plots [Python scripts for plots](./assets/plots.py) for users to modify as needed.
 
-## This code was developed as a part of my publications listed below:  
-1. Yanik, E., Kruger, U., Intes, X., Rahul, R., & De, S. (2023). Video-based formative and summative assessment of surgical tasks using deep learning. Scientific Reports, 13(1), 1038.
-2. Yanik, E., Ainam, J. P., Fu, Y., Schwaitzberg, S., Cavuoto, L., & De, S. (2024). Video-based skill acquisition assessment in laparoscopic surgery using deep learning. Global Surgical Education-Journal of the Association for Surgical Education, 3(1), 26.
-3. Yanik, E., Schwaitzberg, S., Yang, G., Intes, X., Norfleet, J., Hackett, M., & De, S. (2024). One-shot skill assessment in high-stakes domains with limited data via meta learning. Computers in Biology and Medicine, 174, 108470. / Yanik, E., Schwaitzberg, S., Yang, J., Intes, X., & De, S. (2022). One-shot domain adaptation in video-based assessment of surgical skills. arXiv e-prints, arXiv-2301.
-4. Yanik, E., Intes, X., & De, S. (2024). Cognitive-Motor Integration in Assessing Bimanual Motor Skills. arXiv preprint arXiv:2404.10889.
-
 ## Licence
 This project is licensed under the MIT License. See the  file for details.
 
-## References for the methods:  
+## References for the methods so far:  
 1.[How Much Can We Really Trust You? Towards Simple, Interpretable Trust Quantification Metrics for Deep Neural Networks](https://arxiv.org/pdf/2009.05835).  
 2.[Where Does Trust Break Down? A Quantitative Trust Analysis of Deep Neural Networks via Trust Matrix and Conditional Trust Densities](https://arxiv.org/pdf/2009.14701).  
 
