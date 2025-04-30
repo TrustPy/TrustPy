@@ -9,7 +9,7 @@ setup(
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
     url='https://github.com/yaniker/trustpy',
-    packages=find_packages(),
+    packages=find_packages(include=['trustpy', 'trustpy.*']),
     install_requires=[
         'numpy>=1.20',
         'scikit-learn>=1.0',
