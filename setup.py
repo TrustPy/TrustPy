@@ -1,14 +1,14 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='nettrustscore',
-    version='2.0.2',
+    name='trustpy',
+    version='2.0.3',
     author='Erim_Yanik',
     author_email='erimyanik@gmail.com',
-    description='Trustworthiness metrics for Softmax predictive models',
+    description='Trustworthiness metrics and calibration tools predictive models',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
-    url='https://github.com/yaniker/nettrustscore-python',
+    url='https://github.com/yaniker/trustpy',
     packages=find_packages(),
     install_requires=[
         'numpy>=1.20',
