@@ -90,27 +90,5 @@ I shared the codes for the plots [Python scripts for plots](./assets/plots.py) f
 ## Licence
 This project is licensed under the MIT License. See the  file for details.
 
-## References for the methods so far:  
-1.[How Much Can We Really Trust You? Towards Simple, Interpretable Trust Quantification Metrics for Deep Neural Networks](https://arxiv.org/pdf/2009.05835).  
-2.[Where Does Trust Break Down? A Quantitative Trust Analysis of Deep Neural Networks via Trust Matrix and Conditional Trust Densities](https://arxiv.org/pdf/2009.14701).  
-
-## Please cite / acknowledge the following papers accordingly:  
-
-```
-For NTS:
-@article{wong2020much,
-  title={How much can we really trust you? towards simple, interpretable trust quantification metrics for deep neural networks},
-  author={Wong, Alexander and Wang, Xiao Yu and Hryniowski, Andrew},
-  journal={arXiv preprint arXiv:2009.05835},
-  year={2020}
-}
-
-For conditional NTS:
-@article{hryniowski2020does,
-  title={Where does trust break down? A quantitative trust analysis of deep neural networks via trust matrix and conditional trust densities},
-  author={Hryniowski, Andrew and Wang, Xiao Yu and Wong, Alexander},
-  journal={arXiv preprint arXiv:2009.14701},
-  year={2020}
-}
-
-```
+## Citations
+For scholarly references and the origins of the techniques used in this package, please refer to the CITATION.cff file.
