@@ -23,10 +23,6 @@ def test_valid_computation(oracle, softmax_preds):
     assert "overall" in result
     assert all(k.startswith("class_") or k == "overall" for k in result)
 
-import numpy as np
-import pytest
-from trustpy.nts import NTS  # adjust if needed
-
 def test_valid_input():
     nts = NTS(oracle, softmax_preds)
     assert isinstance(nts, NTS)
