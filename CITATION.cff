@@ -1,0 +1,38 @@
+cff-version: 1.2.0
+message: "If you use TrustPy in your work, please cite the following references."
+title: TrustPy
+version: 2.0.4
+date-released: 2025-05-01
+url: https://github.com/yaniker/trustpy
+authors:
+  - family-names: Yanik
+    given-names: Erim
+    affiliation: Florida State University
+    email: erimyanik@gmail.com
+
+references:
+  - type: article
+    authors:
+      - family-names: Wong
+        given-names: Alexander
+      - family-names: Wang
+        given-names: Xiao Yu
+      - family-names: Hryniowski
+        given-names: Andrew
+    title: How Much Can We Really Trust You? Towards Simple, Interpretable Trust Quantification Metrics for Deep Neural Networks
+    year: 2020
+    url: https://arxiv.org/pdf/2009.05835
+    journal: arXiv preprint arXiv:2009.05835
+
+  - type: article
+    authors:
+      - family-names: Hryniowski
+        given-names: Andrew
+      - family-names: Wang
+        given-names: Xiao Yu
+      - family-names: Wong
+        given-names: Alexander
+    title: Where Does Trust Break Down? A Quantitative Trust Analysis of Deep Neural Networks via Trust Matrix and Conditional Trust Densities
+    year: 2020
+    url: https://arxiv.org/pdf/2009.14701
+    journal: arXiv preprint arXiv:2009.14701
