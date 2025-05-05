@@ -23,56 +23,56 @@ def test_valid_computation(oracle, softmax_preds):
     assert "overall" in result
     assert all(k.startswith("class_") or k == "overall" for k in result)
 
-def test_valid_input():
+def test_valid_input(oracle, softmax_preds):
     nts = NTS(oracle, softmax_preds)
     assert isinstance(nts, NTS)
 
-def test_oracle_not_ndarray():
+def test_oracle_not_ndarray(softmax_preds):
     with pytest.raises(AssertionError, match="Oracle/Actual Classes must be a NumPy array"):
         NTS([0, 1, 1], softmax_preds)
 
-def test_predictions_not_ndarray():
+def test_predictions_not_ndarray(oracle):
     with pytest.raises(AssertionError, match="Predictions/Predicted Classes must be a NumPy array"):
         NTS(oracle, [[0.9, 0.1], [0.2, 0.8]])
 
-def test_alpha_not_numeric():
+def test_alpha_not_numeric(oracle, softmax_preds):
     with pytest.raises(AssertionError, match="alpha must be a number"):
         NTS(oracle, softmax_preds, alpha="high")
 
-def test_beta_not_numeric():
+def test_beta_not_numeric(oracle, softmax_preds):
     with pytest.raises(AssertionError, match="beta must be a number"):
         NTS(oracle, softmax_preds, beta=None)
 
-def test_trust_spectrum_not_bool():
+def test_trust_spectrum_not_bool(oracle, softmax_preds):
     with pytest.raises(AssertionError, match="trust_spectrum must be True/False"):
         NTS(oracle, softmax_preds, trust_spectrum="yes")
 
-def test_show_summary_not_bool():
+def test_show_summary_not_bool(oracle, softmax_preds):
     with pytest.raises(AssertionError, match="show_summary must be True/False"):
         NTS(oracle, softmax_preds, show_summary=1)
 
-def test_export_summary_not_bool():
+def test_export_summary_not_bool(oracle, softmax_preds):
     with pytest.raises(AssertionError, match="export_summary must be True/False"):
         NTS(oracle, softmax_preds, export_summary="true")
 
-def test_oracle_not_1d():
+def test_oracle_not_1d(softmax_preds):
     with pytest.raises(AssertionError, match="Oracle/Actual Classes must be a 1D array"):
-        NTS(np.array([[0], [1], [1]]), valid_predictions)
+        NTS(np.array([[0], [1], [1]]), softmax_preds)
 
-def test_predictions_not_2d():
+def test_predictions_not_2d(oracle):
     with pytest.raises(AssertionError, match="Predictions/Predicted Classes must be a 2D array"):
-        NTS(valid_oracle, np.array([0.9, 0.1, 0.2]))
+        NTS(oracle, np.array([0.9, 0.1, 0.2]))
 
-def test_sample_size_mismatch():
+def test_sample_size_mismatch(softmax_preds):
     with pytest.raises(AssertionError, match="Number of samples mismatch"):
         NTS(np.array([0, 1]), softmax_preds)
 
-def test_predictions_out_of_bounds():
+def test_predictions_out_of_bounds(oracle):
     bad_predictions = np.array([[1.2, -0.2], [0.2, 0.8], [0.3, 0.7]])
     with pytest.raises(AssertionError, match="Predictions must be between 0 and 1"):
         NTS(oracle, bad_predictions)
 
-def test_predictions_not_softmax():
+def test_predictions_not_softmax(oracle):
     bad_predictions = np.array([[0.5, 0.3], [0.2, 0.8], [0.3, 0.7]])
     with pytest.raises(AssertionError, match="Each row of SoftMax predictions must sum to 1"):
         NTS(oracle, bad_predictions)
@@ -88,7 +88,7 @@ def test_known_output():
     nts = NTS(oracle, preds, show_summary=False, export_summary=False)
     scores = nts.compute()
     # All correct predictions -> high NTS
-    assert float(scores["overall"]) == 0.775
+    assert abs(float(scores["overall"]) - 0.775) < 1e-3
 
 def test_all_incorrect():
     oracle = np.array([0, 0, 1, 1])
@@ -101,7 +101,7 @@ def test_all_incorrect():
     nts = NTS(oracle, preds, show_summary=False, export_summary=False)
     scores = nts.compute()
     # All wrong → trust scores should be low
-    assert float(scores["overall"]) == 0.2
+    assert abs(float(scores["overall"]) - 0.2) < 1e-3
 
 def test_single_sample():
     oracle = np.array([1])
