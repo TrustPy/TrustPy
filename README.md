@@ -94,7 +94,7 @@ This project is licensed under the MIT License. See the  file for details.
 1.[How Much Can We Really Trust You? Towards Simple, Interpretable Trust Quantification Metrics for Deep Neural Networks](https://arxiv.org/pdf/2009.05835).  
 2.[Where Does Trust Break Down? A Quantitative Trust Analysis of Deep Neural Networks via Trust Matrix and Conditional Trust Densities](https://arxiv.org/pdf/2009.14701).  
 
-## If you use this package in your research, please cite the following papers accordingly:  
+## Please cite / acknowledge the following papers accordingly:  
 
 ```
 For NTS:
