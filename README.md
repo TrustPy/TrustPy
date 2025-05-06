@@ -48,6 +48,11 @@ git clone https://github.com/yaniker/TrustPy.git
 cd TrustPy
 ```
 
+You can verify installation by running:
+```bash
+python -c "from trustpy import NTS, CNTS; print('TrustPy is ready.')"
+```
+
 ## Example Usage
 ```python
 from trustpy import NTS, CNTS #This is how the package is imported.
@@ -86,6 +91,9 @@ Example Plot for Conditional Trust Spectrum (`trust_spectrum = True`)
 ![Alt text](./assets/conditional_trust_densities.png)
 
 I shared the codes for the plots [Python scripts for plots](./assets/plots.py) for users to modify as needed.
+
+## Unit Testing
+All unit tests were run using `pytest` with full coverage prior to release to ensure reliability and correctness.
 
 ## Licence
 This project is licensed under the MIT License. See the  file for details.
