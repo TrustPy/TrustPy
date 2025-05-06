@@ -74,13 +74,11 @@ predictions = np.array([
 # Initialize with default parameters
 nts = NTS(oracle, predictions, show_summary=True, export_summary=True, trust_spectrum=True)
 nts_scores_dict = nts.compute() # Computes trustworthiness for each class and overall.
-print(nts_scores_dict)
 
 # FOR CONDITIONAL NETTRUSTSCORE #
 # Initialize with default parameters
 cnts = CNTS(oracle, predictions, , show_summary=True, export_summary=True, trust_spectrum=True)
 cnts_scores_dict = cnts.compute() # Computes trustworthiness for each class and overall.
-print(cnts_scores_dict)
 
 # Sets show_summary=True to print the results table.
 # Sets export_summary=True to save the results.
