@@ -96,7 +96,7 @@ I shared the codes for the plots [Python scripts for plots](./assets/plots.py) f
 All unit tests were run using `pytest` with full coverage prior to release to ensure reliability and correctness.
 
 ## Licence
-This project is licensed under the MIT License. See the  file for details.
+This project is licensed under the MIT License. See [LICENSE.md](./LICENSE.md) for details.
 
 ## Citations
 For scholarly references and the origins of the techniques used in this package, please refer to the [CITATION.cff](./CITATION.cff) file.
