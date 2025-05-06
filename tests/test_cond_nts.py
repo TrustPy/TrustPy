@@ -1,6 +1,6 @@
 import numpy as np
 import pytest
-from trustpy.cnts import CNTS
+from trustpy.cond_nts import CNTS
 
 @pytest.fixture
 def oracle():
