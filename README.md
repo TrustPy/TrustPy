@@ -99,4 +99,4 @@ All unit tests were run using `pytest` with full coverage prior to release to en
 This project is licensed under the MIT License. See [LICENSE](./LICENSE) for details.
 
 ## Citations
-For scholarly references and the origins of the techniques used in this package, please refer to the [CITATION.cff](./CITATION.cff) file.
+For scholarly references and the origins of the techniques used in this package, please refer to the [CITATION](./CITATION.cff) file.
