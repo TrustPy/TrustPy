@@ -81,7 +81,17 @@ class NTS:
         return nts_dict
 
     def _compute_question_answer_trust(self, n_classes: int) -> list:
+        """
+        Compute the question-answer trust scores for each class.
+
+        Args:
+            n_classes (int): Number of classes.
+
+        Returns:
+            list: List of lists, each containing trust scores for a class.
+        """
         predicted_class = np.argmax(self.predictions, axis=1)
+        
         qa_trust = [[] for _ in range(n_classes)]
         for i in range(self.oracle.shape[0]):
             true_label = self.oracle[i]
@@ -94,6 +104,18 @@ class NTS:
         return qa_trust
 
     def _compute_trust_density(self, qa_trust: list) -> tuple:
+        """
+        Compute the NTS and trust density curves for each class.
+
+        Args:
+            qa_trust (list): List of trust scores for each class.
+
+        Returns:
+            tuple: (class_nts, density_curves, x_range)
+                - class_nts (list): NTS for each class.
+                - density_curves (list): Density curves for each class.
+                - x_range (np.ndarray): X-axis values for density curves.
+        """
         class_nts, density_curves = [], []
         x_range = np.linspace(0, 1, 100)
         for target in qa_trust:
@@ -106,7 +128,22 @@ class NTS:
             density_curves.append(np.exp(logprob))
         return class_nts, density_curves, x_range
 
-    def _plot_trust_spectrum(self, class_nts: list, density_curves: list, x_range: np.ndarray, n_classes: int) -> None:
+    def _plot_trust_spectrum(self, class_nts: list, density_curves: list, x_range: np.ndarray, n_classes: int,
+                             filename: str = "trust_spectrum.png") -> None:
+        """
+        Plot the trust density curves for each class.
+
+        Args:
+            class_nts (list): NTS for each class.
+            density_curves (list): Density curves for each class.
+            x_range (np.ndarray): X-axis values for density curves.
+            n_classes (int): Number of classes.
+            filename (str): Name of the saved trust spectrum image.
+        """
+        assert isinstance(filename, str), 'filename must be a string'
+        if not filename.lower().endswith(('.png', '.jpg', '.jpeg', '.svg', '.pdf')):
+            filename += '.png'
+                                 
         class_labels = [f'Class {i}' for i in range(n_classes)]
         colors = plt.cm.tab10(np.arange(n_classes))
         fig, ax = plt.subplots(figsize=(6 * n_classes, 6), ncols=n_classes, sharey=True)
@@ -121,14 +158,34 @@ class NTS:
             ax[c].tick_params(labelsize=24)
             ax[c].set_title(f'{class_labels[c]}\nNTS = {class_nts[c]:.3f}', fontsize=24)
         plt.tight_layout()
-        plt.show()
+        output_dir = os.path.join(os.getcwd(), "trustpy", "nts")
+        os.makedirs(output_dir, exist_ok=True)
+        filepath = os.path.join(output_dir, filename)
+        plt.savefig(filepath)
+        plt.close()
 
     def _compute_overall_NTS(self, class_nts: list, qa_trust: list) -> float:
+        """
+        Compute the overall NTS across all classes.
+
+        Args:
+            class_nts (list): NTS for each class.
+            qa_trust (list): List of trust scores for each class.
+
+        Returns:
+            float: Overall NTS.
+        """
         overall_nts = sum(tm * len(ts) for tm, ts in zip(class_nts, qa_trust))
         total_samples = sum(len(ts) for ts in qa_trust)
         return overall_nts / total_samples if total_samples > 0 else 0.0
 
     def print_summary(self, nts_dict: dict) -> None:
+        """
+        Pretty prints a summary table of NTS, conditional NTS values.
+
+        Args:
+            nts_dict (dict): Dictionary of trust scores computed by compute().
+        """
         classes = sorted(k.split('_')[1] for k in nts_dict if k.startswith('class_'))
         print(f"{'Class':<10} {'NTS':<10}")
         print("-" * 20)
@@ -138,6 +195,13 @@ class NTS:
         print(f"{'Overall':<10} {nts_dict.get('overall', '-'):<10}")
 
     def export_summary_to_file(self, nts_dict: dict, filename: str = "nts_summary.csv") -> None:
+        """
+        Saves a summary table of NTS, conditional NTS values to a CSV file.
+
+        Args:
+            nts_dict (dict): Dictionary of trust scores computed by compute().
+            filename (str): Filename to save the summary. Defaults to 'trust_summary.csv'.
+        """
         output_dir = os.path.join(os.getcwd(), "trustpy", "nts")
         os.makedirs(output_dir, exist_ok=True)
         filepath = os.path.join(output_dir, filename)
