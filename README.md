@@ -77,7 +77,7 @@ nts_scores_dict = nts.compute() # Computes trustworthiness for each class and ov
 
 # FOR CONDITIONAL NETTRUSTSCORE #
 # Initialize with default parameters
-cnts = CNTS(oracle, predictions, , show_summary=True, export_summary=True, trust_spectrum=True)
+cnts = CNTS(oracle, predictions, show_summary=True, export_summary=True, trust_spectrum=True)
 cnts_scores_dict = cnts.compute() # Computes trustworthiness for each class and overall.
 
 # Sets show_summary=True to print the results table.
