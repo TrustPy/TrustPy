@@ -3,7 +3,7 @@
 Python package for validating AI/ML model reliability and uncertainty during development and before deployment. Distributed via Conda-Forge and PyPI.
 
 ###
-**The implementation is flexible and works out-the-box.**
+**The implementation is flexible and works out-the-box with any AI/ML library.**
 ###
 
 ## Installation
