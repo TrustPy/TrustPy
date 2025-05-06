@@ -108,7 +108,6 @@ class CNTS:
         Returns:
             list: List of lists, each containing trust scores for a class.
         """
-
         predicted_class = np.argmax(self.predictions, axis=1)
 
         qa_trust = [[] for _ in range(n_classes)]
@@ -179,6 +178,7 @@ class CNTS:
             density_curves (list): Density curves for each class.
             x_range (np.ndarray): X-axis values for density curves.
             n_classes (int): Number of classes.
+            filename (str): Name of the saved trust spectrum image.
         """
         assert isinstance(filename, str), 'filename must be a string'
         if not filename.lower().endswith(('.png', '.jpg', '.jpeg', '.svg', '.pdf')):
@@ -291,7 +291,6 @@ class CNTS:
             nts_dict (dict): Dictionary of trust scores computed by compute().
             filename (str): Filename to save the summary. Defaults to 'trust_summary.csv'.
         """
-
         output_dir = os.path.join(os.getcwd(), "trustpy", "cnts")
         os.makedirs(output_dir, exist_ok=True)  # Create folder if it doesn't exist
         filepath = os.path.join(output_dir, filename)
