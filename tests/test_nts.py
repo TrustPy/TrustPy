@@ -68,12 +68,12 @@ def test_sample_size_mismatch(softmax_preds):
         NTS(np.array([0, 1]), softmax_preds)
 
 def test_predictions_out_of_bounds(oracle):
-    bad_predictions = np.array([[1.2, -0.2], [0.2, 0.8], [0.3, 0.7]])
+    bad_predictions = np.array([[1.2, -0.2], [0.2, 0.8], [0.3, 0.7], [0.5, 0.5]]])
     with pytest.raises(AssertionError, match="Predictions must be between 0 and 1"):
         NTS(oracle, bad_predictions)
 
 def test_predictions_not_softmax(oracle):
-    bad_predictions = np.array([[0.5, 0.3], [0.2, 0.8], [0.3, 0.7]])
+    bad_predictions = np.array([[0.5, 0.3], [0.2, 0.8], [0.3, 0.7], [0.4, 0.5]])
     with pytest.raises(AssertionError, match="Each row of SoftMax predictions must sum to 1"):
         NTS(oracle, bad_predictions)
 
