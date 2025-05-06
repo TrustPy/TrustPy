@@ -1,6 +1,6 @@
 # TrustPy - Trustworthiness Python
 
-Conda-Forge / PyPI package providing a Python implementation of trustworthiness quantification metrics for predictive models (e.g., DNNs):   
+Python package for validating AI/ML model reliability and uncertainty during development and before deployment. Distributed via Conda-Forge and PyPI.
 
 ###
 **The implementation is flexible and works out-the-box.**
