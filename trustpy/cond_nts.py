@@ -169,7 +169,8 @@ class CNTS:
             density_curves.append(np.exp(logprob))
         return class_nts, density_curves, x_range
 
-    def _plot_trust_spectrum(self, class_nts: list, density_curves: list, x_range: np.ndarray, n_classes: int) -> None:
+    def _plot_trust_spectrum(self, class_nts: list, density_curves: list,
+                             x_range: np.ndarray, n_classes: int, filename: str = "trust_spectrum.png") -> None:
         """
         Plot the trust density curves for each class.
 
@@ -179,6 +180,10 @@ class CNTS:
             x_range (np.ndarray): X-axis values for density curves.
             n_classes (int): Number of classes.
         """
+        assert isinstance(filename, str), 'filename must be a string'
+        if not filename.lower().endswith(('.png', '.jpg', '.jpeg', '.svg', '.pdf')):
+            filename += '.png'
+                                 
         class_labels = [f'Class {i}' for i in range(n_classes)]
         colors = plt.cm.tab10(np.arange(n_classes))
         fig, ax = plt.subplots(figsize=(6 * n_classes, 6), ncols=n_classes, sharey=True)
@@ -193,19 +198,27 @@ class CNTS:
             ax[c].tick_params(labelsize=24)
             ax[c].set_title(f'{class_labels[c]}\nNTS = {class_nts[c]:.3f}', fontsize=24)
         plt.tight_layout()
-        plt.show()
-        # plt.savefig(os.path.join('./trust_spectrum.png'))
-        # plt.close()
 
-    def _plot_conditional_trust_densities(self, correct_trust: list, incorrect_trust: list, n_classes: int) -> None:
+        output_dir = os.path.join(os.getcwd(), "trustpy", "cnts")
+        os.makedirs(output_dir, exist_ok=True)
+        filepath = os.path.join(output_dir, filename)        
+        plt.savefig(filepath)
+        plt.close()
+
+    def _plot_conditional_trust_densities(self, correct_trust: list, incorrect_trust: list, n_classes: int,
+                                          filename: str = 'conditional_trust_densities.png') -> None:
         """
         Plot the conditional trust density curves for correct and incorrect predictions per class.
-
+        
         Args:
             correct_trust (list): Trust scores for correct predictions per class.
             incorrect_trust (list): Trust scores for incorrect predictions per class.
             n_classes (int): Number of classes.
         """
+        assert isinstance(filename, str), 'filename must be a string'
+        if not filename.lower().endswith(('.png', '.jpg', '.jpeg', '.svg', '.pdf')):
+            filename += '.png'
+        
         x_range = np.linspace(0, 1, 100)
         fig, ax = plt.subplots(figsize=(6 * n_classes, 6), ncols=n_classes, sharey=True)
         if n_classes == 1:
@@ -230,9 +243,12 @@ class CNTS:
                 ax[c].set_ylabel('Trust Density', fontsize=24, fontweight='bold')
             ax[c].tick_params(labelsize=24)
         plt.tight_layout()
-        plt.show()
-        # plt.savefig(os.path.join('./conditional_trust_densities.png'))
-        # plt.close()
+
+        output_dir = os.path.join(os.getcwd(), "trustpy", "cnts")
+        os.makedirs(output_dir, exist_ok=True)
+        filepath = os.path.join(output_dir, filename)        
+        plt.savefig(filepath)                                              
+        plt.close()
 
     def _compute_overall_NTS(self, class_nts: list, qa_trust: list) -> float:
         """
