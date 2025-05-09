@@ -4,7 +4,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.neighbors import KernelDensity
 
-
 class CNTS:
     def __init__(self, oracle: np.ndarray, predictions: np.ndarray,
                  alpha: float = 1.0, beta: float = 1.0,
@@ -85,10 +84,10 @@ class CNTS:
         # Construct the dictionary
         nts_dict = {}
         for i in range(n_classes):
-            nts_dict[f'class_{i}'] = round(class_nts[i], 3)
-            nts_dict[f'class_{i}_correct'] = round(cond_nts_correct[i], 3)
-            nts_dict[f'class_{i}_incorrect'] = round(cond_nts_incorrect[i], 3)
-        nts_dict['overall'] = round(overall_nts, 3)
+            nts_dict[f'class_{i}'] = float(round(class_nts[i], 3))
+            nts_dict[f'class_{i}_correct'] = float(round(cond_nts_correct[i], 3))
+            nts_dict[f'class_{i}_incorrect'] = float(round(cond_nts_incorrect[i], 3))
+        nts_dict['overall'] = float(round(overall_nts, 3))
 
         if self.show_summary:
             self.print_summary(nts_dict)
