@@ -88,7 +88,7 @@ def test_known_output():
     nts = NTS(oracle, preds, show_summary=False, export_summary=False)
     scores = nts.compute()
     # All correct predictions -> high NTS
-    assert abs(float(scores["overall"]) - 0.775) < 1e-3
+    assert abs(scores["overall"] - 0.775) < 1e-3
 
 def test_all_incorrect():
     oracle = np.array([0, 0, 1, 1])
@@ -101,7 +101,7 @@ def test_all_incorrect():
     nts = NTS(oracle, preds, show_summary=False, export_summary=False)
     scores = nts.compute()
     # All wrong → trust scores should be low
-    assert abs(float(scores["overall"]) - 0.2) < 1e-3
+    assert abs(scores["overall"] - 0.2) < 1e-3
 
 def test_single_sample():
     oracle = np.array([1])
