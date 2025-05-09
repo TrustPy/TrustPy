@@ -2,10 +2,10 @@ from setuptools import setup, find_packages
 
 setup(
     name='trustpy-tools',
-    version='2.0.5',
+    version='2.0.6',
     author='Erim_Yanik',
     author_email='erimyanik@gmail.com',
-    description='Trustworthiness metrics and calibration tools predictive models',
+    description='Trustworthiness metrics and calibration tools for predictive models',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
     url='https://github.com/yaniker/trustpy',
