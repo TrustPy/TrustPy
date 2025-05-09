@@ -1,8 +1,7 @@
 import numpy as np
 import pytest
-from trustpy.nts import NTS
+from trustpy import NTS
 
-# Test Data Fixtures
 @pytest.fixture
 def oracle():
     return np.array([0, 1, 1, 0])
@@ -109,6 +108,6 @@ def test_single_sample():
     nts = NTS(oracle, preds, show_summary=False, export_summary=False)
     scores = nts.compute()
     assert "overall" in scores
-    assert isinstance(scores["overall"], str)
+    assert isinstance(scores["overall"], float)
 
 
