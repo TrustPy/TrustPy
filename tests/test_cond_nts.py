@@ -1,6 +1,6 @@
 import numpy as np
 import pytest
-from trustpy.cond_nts import CNTS
+from trustpy import CNTS
 
 @pytest.fixture
 def oracle():
@@ -106,4 +106,4 @@ def test_single_sample():
     cnts = CNTS(oracle, preds, show_summary=False, export_summary=False)
     scores = cnts.compute()
     assert "overall" in scores
-    assert isinstance(scores["overall"], str)
+    assert isinstance(scores["overall"], float)
