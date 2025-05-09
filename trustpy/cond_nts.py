@@ -85,10 +85,10 @@ class CNTS:
         # Construct the dictionary
         nts_dict = {}
         for i in range(n_classes):
-            nts_dict[f'class_{i}'] = f'{class_nts[i]:.3f}'
-            nts_dict[f'class_{i}_correct'] = f'{cond_nts_correct[i]:.3f}'
-            nts_dict[f'class_{i}_incorrect'] = f'{cond_nts_incorrect[i]:.3f}'
-        nts_dict['overall'] = f'{overall_nts:.3f}'
+            nts_dict[f'class_{i}'] = round(class_nts[i], 3)
+            nts_dict[f'class_{i}_correct'] = round(cond_nts_correct[i], 3)
+            nts_dict[f'class_{i}_incorrect'] = round(cond_nts_incorrect[i], 3)
+        nts_dict['overall'] = round(overall_nts, 3)
 
         if self.show_summary:
             self.print_summary(nts_dict)
