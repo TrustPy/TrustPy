@@ -4,7 +4,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.neighbors import KernelDensity
 
-
 class NTS:
     def __init__(self, oracle: np.ndarray, predictions: np.ndarray,
                  alpha: float = 1.0, beta: float = 1.0,
@@ -69,8 +68,8 @@ class NTS:
 
         overall_nts = self._compute_overall_NTS(class_nts, qa_trust)
         
-        nts_dict = {f'class_{i}': round(nts, 3) for i, nts in enumerate(class_nts)}
-        nts_dict['overall'] = round(overall_nts, 3)
+        nts_dict = {f'class_{i}': float(round(nts, 3)) for i, nts in enumerate(class_nts)}
+        nts_dict['overall'] = float(round(overall_nts, 3))
 	
         if self.show_summary:
             self.print_summary(nts_dict)
