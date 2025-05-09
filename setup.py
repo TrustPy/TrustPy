@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='trustpy-tools',
-    version='2.0.6',
+    version='2.0.7',
     author='Erim_Yanik',
     author_email='erimyanik@gmail.com',
     description='Trustworthiness metrics and calibration tools for predictive models',
