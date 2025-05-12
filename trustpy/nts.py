@@ -33,14 +33,16 @@ class NTS:
 
         assert oracle.ndim == 1, 'Oracle/Actual Classes must be a 1D array'
         assert predictions.ndim == 2, 'Predictions/Predicted Classes must be a 2D array'
-        assert oracle.shape[0] == predictions.shape[0], (f'Number of samples mismatch: oracle ({oracle.shape[0]}) vs predictions ({predictions.shape[0]})')
+        assert oracle.shape[0] == predictions.shape[0], f'Number of samples mismatch: oracle ({oracle.shape[0]}) vs predictions ({predictions.shape[0]})'
+        assert len(np.unique(oracle)) == predictions.shape[1], f'Number of classes mismatch: oracle  ({len(np.unique(oracle))}) vs predictions ({predictions.shape[1]})'
         assert predictions.shape[1] >= 2, (
-             f'Predictions must have at least 2 classes, but got shape {predictions.shape} '
-             f'({predictions.shape[1]} class{"es" if predictions.shape[1] != 1 else ""})'
-        )	
-        assert len(np.unique(oracle)) >= 2, (
-                f'Oracle must contain at least 2 unique classes, but got labels: {np.unique(oracle)}'
+            f'Predictions must have at least 2 classes, but got '
+            f'({predictions.shape[1]} class{"es" if predictions.shape[1] != 1 else ""}) '
+            f'(shape: {predictions.shape})'
         )
+        assert len(np.unique(oracle)) >= 2, (
+            f'Oracle must contain at least 2 unique classes, but got {len(np.unique(oracle))} class{"es" if len(np.unique(oracle)) != 1 else ""}'
+)
 
         alpha = float(alpha)
         beta = float(beta)
