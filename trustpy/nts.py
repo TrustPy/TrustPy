@@ -36,15 +36,14 @@ class NTS:
         
         assert oracle.shape[0] == predictions.shape[0], f'Number of samples mismatch: oracle, test samples, ({oracle.shape[0]}) vs predictions ({predictions.shape[0]})'
         
-        assert len(np.unique(oracle)) <= predictions.shape[1], (
-            f'Oracle, test samples, has more unique classes ({len(np.unique(oracle))}) than predictions output '
-            f'({predictions.shape[1]}), which is invalid.'
-        )
         assert predictions.shape[1] >= 2, (
             f'Predictions must have at least 2 unique classes for NTS to generate meaninful results, but got {predictions.shape[1]} class (shape: {predictions.shape})'
 )
         assert len(np.unique(oracle)) >= 2, (
             f'Oracle, test samples, must contain at least 2 unique classes for NTS to generate meaninful results, but got {len(np.unique(oracle))}'
+)
+        assert len(np.unique(oracle)) == predictions.shape[1], (
+            f'Oracle, test samples, and predictions have different number of unique classes: oracle: ({len(np.unique(oracle))}) vs. predictions: ({predictions.shape[1]}).'
 )
 
         alpha = float(alpha)
