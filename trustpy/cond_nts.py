@@ -23,7 +23,7 @@ class CNTS:
             export_summary (bool): If True, saves a summary table of NTS, conditional NTS values to a CSV file. Defaults to True.
         """
 
-        assert isinstance(oracle, np.ndarray), 'Oracle (test samples) must be a NumPy array'
+        assert isinstance(oracle, np.ndarray), 'Oracle, test samples, must be a NumPy array'
         assert isinstance(predictions, np.ndarray), 'Predictions must be a NumPy array'
         assert isinstance(alpha, (int, float)), 'alpha must be a number'
         assert isinstance(beta, (int, float)), 'beta must be a number'
@@ -31,20 +31,20 @@ class CNTS:
         assert isinstance(show_summary, bool), 'show_summary must be True/False'
         assert isinstance(export_summary, bool), 'export_summary must be True/False'
 
-        assert oracle.ndim == 1, 'Oracle (test samples) must be a 1D array'
+        assert oracle.ndim == 1, 'Oracle, test samples, must be a 1D array'
         assert predictions.ndim == 2, 'Predictions must be a 1D array'
         
         assert oracle.shape[0] == predictions.shape[0], (f'Number of samples mismatch: oracle (test samples) ({oracle.shape[0]}) vs predictions ({predictions.shape[0]})')
         
         assert len(np.unique(oracle)) <= predictions.shape[1], (
-            f'Oracle (test samples) has more unique classes ({len(np.unique(oracle))}) than predictions output '
+            f'Oracle, test samples, has more unique classes ({len(np.unique(oracle))}) than predictions output '
             f'({predictions.shape[1]}), which is invalid.'
         )
         assert predictions.shape[1] >= 2, (
             f'Predictions must have at least 2 unique classes for conditional NTS to generate meaninful results, but got {predictions.shape[1]}'
         )
         assert len(np.unique(oracle)) >= 2, (
-            f'Oracle (test samples) must contain at least 2 unique classes for conditional NTS to generate meaninful results, but got {len(np.unique(oracle))} class (shape: {len(np.unique(oracle))})'
+            f'Oracle, test samples, must contain at least 2 unique classes for conditional NTS to generate meaninful results, but got {len(np.unique(oracle))} class (shape: {len(np.unique(oracle))})'
 )
 
         alpha = float(alpha)
