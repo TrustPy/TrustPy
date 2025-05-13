@@ -41,7 +41,7 @@ class CNTS:
             f'({predictions.shape[1]}), which is invalid.'
         )
         assert predictions.shape[1] >= 2, (
-            f'Predictions must have at least 2 unique classes for conditional NTS to generate meaninful results, but got {predictions.shape[1]} class (shape: {predictions.shape})'
+            f'Predictions must have at least 2 unique classes for conditional NTS to generate meaninful results, but got {predictions.shape[1]}'
         )
         assert len(np.unique(oracle)) >= 2, (
             f'Oracle (test samples) must contain at least 2 unique classes for conditional NTS to generate meaninful results, but got {len(np.unique(oracle))} class (shape: {len(np.unique(oracle))})'
