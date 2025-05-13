@@ -76,6 +76,27 @@ def test_predictions_not_softmax(oracle):
     with pytest.raises(AssertionError, match="Each row of SoftMax predictions must sum to 1"):
         NTS(oracle, bad_predictions)
 
+def test_predictions_less_than_two_classes(oracle):
+    bad_preds = np.array([[1.0], [1.0], [1.0], [1.0]])
+    with pytest.raises(AssertionError, match="Predictions must have at least 2 unique classes"):
+        NTS(oracle, bad_preds)
+
+def test_oracle_less_than_two_classes(softmax_preds):
+    bad_oracle = np.array([0, 0, 0, 0])
+    with pytest.raises(AssertionError, match="Oracle, test samples, must contain at least 2 unique classes"):
+        NTS(bad_oracle, softmax_preds)
+
+def test_class_count_mismatch():
+    oracle = np.array([0, 1, 2, 2])  # 3 classes
+    preds = np.array([
+        [0.3, 0.7],   # only 2 classes
+        [0.2, 0.8],
+        [0.5, 0.5],
+        [0.4, 0.6]
+    ])
+    with pytest.raises(AssertionError, match="Oracle, test samples, and predictions have different number of unique classes"):
+        NTS(oracle, preds)
+
 def test_known_output():
     oracle = np.array([0, 0, 1, 1])
     preds = np.array([
