@@ -27,11 +27,11 @@ def test_valid_input(oracle, softmax_preds):
     assert isinstance(nts, NTS)
 
 def test_oracle_not_ndarray(softmax_preds):
-    with pytest.raises(AssertionError, match="Oracle/Actual Classes must be a NumPy array"):
+    with pytest.raises(AssertionError, match="Oracle, test samples, must be a NumPy array"):
         NTS([0, 1, 1], softmax_preds)
 
 def test_predictions_not_ndarray(oracle):
-    with pytest.raises(AssertionError, match="Predictions/Predicted Classes must be a NumPy array"):
+    with pytest.raises(AssertionError, match="Predictions must be a NumPy array"):
         NTS(oracle, [[0.9, 0.1], [0.2, 0.8]])
 
 def test_alpha_not_numeric(oracle, softmax_preds):
@@ -55,11 +55,11 @@ def test_export_summary_not_bool(oracle, softmax_preds):
         NTS(oracle, softmax_preds, export_summary="true")
 
 def test_oracle_not_1d(softmax_preds):
-    with pytest.raises(AssertionError, match="Oracle/Actual Classes must be a 1D array"):
+    with pytest.raises(AssertionError, match="Oracle, test samples, must be a 1D array"):
         NTS(np.array([[0], [1], [1]]), softmax_preds)
 
 def test_predictions_not_2d(oracle):
-    with pytest.raises(AssertionError, match="Predictions/Predicted Classes must be a 2D array"):
+    with pytest.raises(AssertionError, match="Predictions must be a 2D array"):
         NTS(oracle, np.array([0.9, 0.1, 0.2]))
 
 def test_sample_size_mismatch(softmax_preds):
