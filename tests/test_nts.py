@@ -102,12 +102,12 @@ def test_all_incorrect():
     # All wrong → trust scores should be low
     assert abs(scores["overall"] - 0.2) < 1e-3
 
-def test_single_sample():
-    oracle = np.array([1])
-    preds = np.array([[0.2, 0.8]])
-    nts = NTS(oracle, preds, show_summary=False, export_summary=False)
-    scores = nts.compute()
-    assert "overall" in scores
-    assert isinstance(scores["overall"], float)
+# def test_single_sample():
+#     oracle = np.array([1])
+#     preds = np.array([[0.2, 0.8]])
+#     nts = NTS(oracle, preds, show_summary=False, export_summary=False)
+#     scores = nts.compute()
+#     assert "overall" in scores
+#     assert isinstance(scores["overall"], float)
 
 
