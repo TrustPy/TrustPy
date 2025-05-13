@@ -44,7 +44,7 @@ class NTS:
             f'Predictions must have at least 2 unique classes for NTS to generate meaninful results, but got {predictions.shape[1]} class (shape: {predictions.shape})'
 )
         assert len(np.unique(oracle)) >= 2, (
-            f'Oracle (test samples) must contain at least 2 unique classes for NTS to generate meaninful results, but got {len(np.unique(oracle))} class (shape: {len(np.unique(oracle))})'
+            f'Oracle (test samples) must contain at least 2 unique classes for NTS to generate meaninful results, but got {len(np.unique(oracle))}'
 )
 
         alpha = float(alpha)
