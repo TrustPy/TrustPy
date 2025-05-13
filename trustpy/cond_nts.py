@@ -33,8 +33,13 @@ class CNTS:
 
         assert oracle.ndim == 1, 'Oracle/Actual Classes must be a 1D array'
         assert predictions.ndim == 2, 'Predictions/Predicted Classes must be a 1D array'
+        
         assert oracle.shape[0] == predictions.shape[0], (f'Number of samples mismatch: oracle ({oracle.shape[0]}) vs predictions ({predictions.shape[0]})')
-        assert len(np.unique(oracle)) == predictions.shape[1], f'Number of classes mismatch: oracle: ({len(np.unique(oracle))}) vs predictions ({predictions.shape[1]})'
+        
+        assert len(np.unique(oracle)) <= predictions.shape[1], (
+            f'Oracle has more unique classes ({len(np.unique(oracle))}) than predictions output '
+            f'({predictions.shape[1]}), which is invalid.'
+        )
         assert predictions.shape[1] >= 2, (
             f'Predictions must have at least 2 classes, but got '
             f'({predictions.shape[1]} class{"es" if predictions.shape[1] != 1 else ""}) '
