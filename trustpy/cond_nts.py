@@ -24,7 +24,7 @@ class CNTS:
         """
 
         assert isinstance(oracle, np.ndarray), 'Oracle (test samples) must be a NumPy array'
-        assert isinstance(predictions, np.ndarray), 'Predictions/Predicted Classes must be a NumPy array'
+        assert isinstance(predictions, np.ndarray), 'Predictions must be a NumPy array'
         assert isinstance(alpha, (int, float)), 'alpha must be a number'
         assert isinstance(beta, (int, float)), 'beta must be a number'
         assert isinstance(trust_spectrum, bool), 'trust_spectrum must be True/False'
@@ -32,7 +32,7 @@ class CNTS:
         assert isinstance(export_summary, bool), 'export_summary must be True/False'
 
         assert oracle.ndim == 1, 'Oracle (test samples) must be a 1D array'
-        assert predictions.ndim == 2, 'Predictions/Predicted Classes must be a 1D array'
+        assert predictions.ndim == 2, 'Predictions must be a 1D array'
         
         assert oracle.shape[0] == predictions.shape[0], (f'Number of samples mismatch: oracle (test samples) ({oracle.shape[0]}) vs predictions ({predictions.shape[0]})')
         
