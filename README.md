@@ -5,9 +5,6 @@
 ![Downloads](https://static.pepy.tech/badge/trustpy-tools/month)  
 ![License](https://img.shields.io/pypi/l/trustpy-tools)
 ![Python](https://img.shields.io/pypi/pyversions/trustpy-tools)
-![Build](https://github.com/yaniker/trustpy-tools/actions/workflows/tests.yml/badge.svg)
-![Issues](https://img.shields.io/github/issues/yaniker/trustpy-tools)
-![Stars](https://img.shields.io/github/stars/yaniker/trustpy-tools?style=social)
 
 # TrustPy - Trustworthiness Python
 
