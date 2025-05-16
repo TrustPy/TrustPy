@@ -1,4 +1,5 @@
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/yaniker/TrustPy)
+[![Conda-Forge](https://img.shields.io/conda/vn/conda-forge/trustpy-tools.svg)](https://anaconda.org/conda-forge/trustpy-tools)
 
 # TrustPy - Trustworthiness Python
 
