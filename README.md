@@ -1,3 +1,5 @@
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/yaniker/TrustPy)
+
 # TrustPy - Trustworthiness Python
 
 Python package for validating AI/ML model reliability and uncertainty **during development and before deployment**. Distributed via Conda-Forge and PyPI.
