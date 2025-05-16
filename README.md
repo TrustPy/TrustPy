@@ -2,7 +2,7 @@
 [![Conda-Forge](https://img.shields.io/conda/vn/conda-forge/trustpy-tools.svg)](https://anaconda.org/conda-forge/trustpy-tools)
 ![PyPI](https://img.shields.io/pypi/v/trustpy-tools)
 ![Downloads](https://static.pepy.tech/badge/trustpy-tools)
-![Downloads](https://static.pepy.tech/badge/trustpy-tools/month)
+![Downloads](https://static.pepy.tech/badge/trustpy-tools/month)  
 ![License](https://img.shields.io/pypi/l/trustpy-tools)
 ![Python](https://img.shields.io/pypi/pyversions/trustpy-tools)
 ![Build](https://github.com/yourname/trustpy-tools/actions/workflows/tests.yml/badge.svg)
