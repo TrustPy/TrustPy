@@ -1,6 +1,7 @@
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/yaniker/TrustPy)
 [![Conda-Forge](https://img.shields.io/conda/vn/conda-forge/trustpy-tools.svg)](https://anaconda.org/conda-forge/trustpy-tools)
-![Downloads](https://static.pepy.tech/badge/trustpy-tools/month)
+![PyPI](https://img.shields.io/pypi/v/trustpy-tools)
+![Downloads](https://static.pepy.tech/badge/trustpy-tools/year)
 
 # TrustPy - Trustworthiness Python
 
