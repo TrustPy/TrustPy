@@ -103,6 +103,17 @@ I shared the codes for the plots [Python scripts for plots](./assets/plots.py) f
 ## Unit Testing
 All unit tests were run using `pytest` with full coverage prior to release to ensure reliability and correctness.
 
+After installation, you can run all tests to verify everything is working:
+
+```bash
+python -m pytest tests/
+```
+
+Make sure to install pytest first.
+```bash
+pip install pytest
+```
+
 ## Licence
 This project is licensed under the MIT License. See [LICENSE](./LICENSE) for details.
 
