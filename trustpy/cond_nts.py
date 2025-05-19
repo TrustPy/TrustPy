@@ -32,7 +32,7 @@ class CNTS:
         assert isinstance(export_summary, bool), 'export_summary must be True/False'
 
         assert oracle.ndim == 1, 'Oracle, test samples, must be a 1D array'
-        assert predictions.ndim == 2, 'Predictions must be a 1D array'
+        assert predictions.ndim == 2, 'Predictions must be a 2D array'
         
         assert oracle.shape[0] == predictions.shape[0], (f'Number of samples mismatch: oracle (test samples) ({oracle.shape[0]}) vs predictions ({predictions.shape[0]})')
 
