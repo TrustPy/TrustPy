@@ -6,3 +6,4 @@ dist/
 *.ipynb_checkpoints/
 test_changes.ipynb
 code_parser.py
+all_code_combined.txt
