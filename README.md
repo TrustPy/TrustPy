@@ -89,7 +89,11 @@ cnts_scores_dict = cnts.compute() # Computes trustworthiness for each class and 
 
 # Sets show_summary=True to print the results table.
 # Sets export_summary=True to save the results.
-# Sets trust_spectrum=True to generate trust_spectrum.png
+# Sets trust_spectrum=True to generate plots like:
+# - trustpy/nts/trust_spectrum.png (for NTS)
+# - trustpy/cnts/trust_spectrum.png and conditional_trust_densities.png (for CNTS)
+
+
 ```
 
 Example Plot for Trust Spectrum (`trust_spectrum = True`)
