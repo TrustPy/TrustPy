@@ -59,7 +59,7 @@ def test_oracle_not_1d(softmax_preds):
         CNTS(np.array([[0], [1], [1]]), softmax_preds)
 
 def test_predictions_not_2d(oracle):
-    with pytest.raises(AssertionError, match="Predictions must be a 1D array"):
+    with pytest.raises(AssertionError, match="Predictions must be a 2D array"):
         CNTS(oracle, np.array([0.9, 0.1, 0.2]))
 
 def test_sample_size_mismatch(softmax_preds):
