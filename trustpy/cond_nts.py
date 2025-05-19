@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from sklearn.neighbors import KernelDensity
 
 class CNTS:
-    def __init__(self, oracle: np.ndarray, predictions: np.ndarray,
+    def __init__(self, oracle: np.ndarray, predictions: np.ndarray, *,
                  alpha: float = 1.0, beta: float = 1.0,
                  trust_spectrum: bool = False,
                  show_summary: bool = True,
