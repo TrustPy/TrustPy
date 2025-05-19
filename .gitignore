@@ -5,3 +5,4 @@ dist/
 *.py[cod]
 *.ipynb_checkpoints/
 test_changes.ipynb
+code_parser.py
