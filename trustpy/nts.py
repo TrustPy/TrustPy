@@ -170,6 +170,10 @@ class NTS:
         plt.tight_layout()
         output_dir = os.path.join(os.getcwd(), "trustpy", "nts")
         os.makedirs(output_dir, exist_ok=True)
+        
+        if not os.access(output_dir, os.W_OK):
+            raise PermissionError(f"Cannot write to directory: {output_dir}")
+        
         filepath = os.path.join(output_dir, filename)
         plt.savefig(filepath)
         plt.close()
@@ -214,6 +218,10 @@ class NTS:
         """
         output_dir = os.path.join(os.getcwd(), "trustpy", "nts")
         os.makedirs(output_dir, exist_ok=True)
+        
+        if not os.access(output_dir, os.W_OK):
+            raise PermissionError(f"Cannot write to directory: {output_dir}")
+        
         filepath = os.path.join(output_dir, filename)
 
         fields = ['Class', 'NTS']

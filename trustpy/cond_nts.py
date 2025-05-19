@@ -211,6 +211,10 @@ class CNTS:
 
         output_dir = os.path.join(os.getcwd(), "trustpy", "cnts")
         os.makedirs(output_dir, exist_ok=True)
+        
+        if not os.access(output_dir, os.W_OK):
+            raise PermissionError(f"Cannot write to directory: {output_dir}")
+        
         filepath = os.path.join(output_dir, filename)        
         plt.savefig(filepath)
         plt.close()
@@ -256,6 +260,10 @@ class CNTS:
 
         output_dir = os.path.join(os.getcwd(), "trustpy", "cnts")
         os.makedirs(output_dir, exist_ok=True)
+        
+        if not os.access(output_dir, os.W_OK):
+            raise PermissionError(f"Cannot write to directory: {output_dir}")
+        
         filepath = os.path.join(output_dir, filename)        
         plt.savefig(filepath)                                              
         plt.close()
@@ -303,6 +311,10 @@ class CNTS:
         """
         output_dir = os.path.join(os.getcwd(), "trustpy", "cnts")
         os.makedirs(output_dir, exist_ok=True)  # Create folder if it doesn't exist
+        
+        if not os.access(output_dir, os.W_OK):
+            raise PermissionError(f"Cannot write to directory: {output_dir}")
+        
         filepath = os.path.join(output_dir, filename)
 
         fields = ['Class', 'Overall', 'Correct', 'Incorrect']
