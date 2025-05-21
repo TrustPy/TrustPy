@@ -120,13 +120,20 @@ pip install pytest
 
 ## Plot Generation Testing
 You can run this single command to verify that TrustPy runs correctly and can generate trust spectrum plots:
+For NTS:  
 ```bash
 python -c "from trustpy import NTS; import numpy as np; NTS(np.array([0,1,1,0]), np.array([[0.8,0.2],[0.2,0.8],[0.4,0.6],[0.9,0.1]]), trust_spectrum=True, show_summary=False).compute()"
+```
+
+For CNTS:  
+```bash
+python -c "from trustpy import CNTS; import numpy as np; CNTS(np.array([0,1,1,0]), np.array([[0.8,0.2],[0.2,0.8],[0.4,0.6],[0.9,0.1]]), trust_spectrum=True, show_summary=False).compute()"
 ```
 
 This will generate a test plot and save it to:
 ```bash
 ./trustpy/nts/trust_spectrum.png
+./trustpy/cnts/conditional_trust_densities.png
 ```
 
 ## Licence
