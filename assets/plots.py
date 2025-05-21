@@ -1,4 +1,4 @@
-import os
+from pathlib import Path
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.neighbors import KernelDensity
@@ -29,7 +29,7 @@ def plot_trust_spectrum(class_nts: list, density_curves: list, x_range: np.ndarr
             ax[c].tick_params(labelsize=24)
             ax[c].set_title(f'{class_labels[c]}\nNTS = {class_nts[c]:.3f}', fontsize=24)
         plt.tight_layout()
-        plt.savefig(os.path.join('./trust_spectrum.png'))
+        plt.savefig(Path("trust_spectrum.png"))
         plt.close()
 
 def plot_conditional_trust_densities(correct_trust: list, incorrect_trust: list, n_classes: int) -> None:
@@ -65,5 +65,5 @@ def plot_conditional_trust_densities(correct_trust: list, incorrect_trust: list,
                 ax[c].set_ylabel('Trust Density', fontsize=24, fontweight='bold')
             ax[c].tick_params(labelsize=24)
         plt.tight_layout()
-        plt.savefig(os.path.join('./conditional_trust_densities.png'))
+        plt.savefig(Path("conditional_trust_densities.png"))
         plt.close()
