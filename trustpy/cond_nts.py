@@ -1,4 +1,4 @@
-import os
+from pathlib import Path
 import csv
 import numpy as np
 import matplotlib.pyplot as plt
@@ -209,13 +209,13 @@ class CNTS:
             ax[c].set_title(f'{class_labels[c]}\nNTS = {class_nts[c]:.3f}', fontsize=24)
         plt.tight_layout()
 
-        output_dir = os.path.join(os.getcwd(), "trustpy", "cnts")
-        os.makedirs(output_dir, exist_ok=True)
+        output_dir = Path.cwd() / "trustpy" / "cnts"
+        output_dir.mkdir(parents=True, exist_ok=True)
         
-        if not os.access(output_dir, os.W_OK):
+        if not output_dir.exists() or not os.access(output_dir, os.W_OK):
             raise PermissionError(f"Cannot write to directory: {output_dir}")
         
-        filepath = os.path.join(output_dir, filename)        
+        filepath = output_dir / filename
         plt.savefig(filepath)
         plt.close()
 
@@ -258,14 +258,14 @@ class CNTS:
             ax[c].tick_params(labelsize=24)
         plt.tight_layout()
 
-        output_dir = os.path.join(os.getcwd(), "trustpy", "cnts")
-        os.makedirs(output_dir, exist_ok=True)
+        output_dir = Path.cwd() / "trustpy" / "cnts"
+        output_dir.mkdir(parents=True, exist_ok=True)
         
-        if not os.access(output_dir, os.W_OK):
+        if not output_dir.exists() or not os.access(output_dir, os.W_OK):
             raise PermissionError(f"Cannot write to directory: {output_dir}")
         
-        filepath = os.path.join(output_dir, filename)        
-        plt.savefig(filepath)                                              
+        filepath = output_dir / filename
+        plt.savefig(filepath)                                     
         plt.close()
 
     def _compute_overall_NTS(self, class_nts: list, qa_trust: list) -> float:
@@ -309,13 +309,13 @@ class CNTS:
             nts_dict (dict): Dictionary of trust scores computed by compute().
             filename (str): Filename to save the summary. Defaults to 'trust_summary.csv'.
         """
-        output_dir = os.path.join(os.getcwd(), "trustpy", "cnts")
-        os.makedirs(output_dir, exist_ok=True)  # Create folder if it doesn't exist
+       output_dir = Path.cwd() / "trustpy" / "cnts"
+        output_dir.mkdir(parents=True, exist_ok=True)
         
-        if not os.access(output_dir, os.W_OK):
+        if not output_dir.exists() or not os.access(output_dir, os.W_OK):
             raise PermissionError(f"Cannot write to directory: {output_dir}")
         
-        filepath = os.path.join(output_dir, filename)
+        filepath = output_dir / filename
 
         fields = ['Class', 'Overall', 'Correct', 'Incorrect']
         classes = sorted(set(k.split('_')[1] for k in nts_dict.keys() if k.startswith('class_') and 'correct' not in k and 'incorrect' not in k))
