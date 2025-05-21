@@ -1,6 +1,6 @@
 All notable changes to this project are documented here.
 
-## Version 2.0.10 – Maintenance Release
+## Version 2.0.10
 Release Date: 2025-05-21
 
 Migrated from os.path to pathlib.Path for all file and plot path handling (in NTS, CNTS, and plot scripts).
