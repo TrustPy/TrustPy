@@ -168,15 +168,15 @@ class NTS:
             ax[c].tick_params(labelsize=24)
             ax[c].set_title(f'{class_labels[c]}\nNTS = {class_nts[c]:.3f}', fontsize=24)
         plt.tight_layout()
-				     
+        
         output_dir = Path.cwd() / "trustpy" / "nts"
-	output_dir.mkdir(parents=True, exist_ok=True)
-	
-	if not output_dir.exists() or not os.access(output_dir, os.W_OK):
-	    raise PermissionError(f"Cannot write to directory: {output_dir}")
-	
-	filepath = output_dir / filename
-	plt.savefig(filepath)
+        output_dir.mkdir(parents=True, exist_ok=True)
+        
+        if not output_dir.exists() or not os.access(output_dir, os.W_OK):
+            raise PermissionError(f"Cannot write to directory: {output_dir}")
+
+        filepath = output_dir / filename
+        plt.savefig(filepath)
         plt.close()
 
     def _compute_overall_NTS(self, class_nts: list, qa_trust: list) -> float:
@@ -218,12 +218,12 @@ class NTS:
             filename (str): Filename to save the summary. Defaults to 'trust_summary.csv'.
         """
         output_dir = Path.cwd() / "trustpy" / "nts"
-	output_dir.mkdir(parents=True, exist_ok=True)
-	
-	if not output_dir.exists() or not os.access(output_dir, os.W_OK):
-	    raise PermissionError(f"Cannot write to directory: {output_dir}")
-	
-	filepath = output_dir / filename
+        output_dir.mkdir(parents=True, exist_ok=True)
+
+        if not output_dir.exists() or not os.access(output_dir, os.W_OK):
+            raise PermissionError(f"Cannot write to directory: {output_dir}")
+
+        filepath = output_dir / filename
 
         fields = ['Class', 'NTS']
         classes = sorted(k.split('_')[1] for k in nts_dict if k.startswith('class_'))
