@@ -309,7 +309,7 @@ class CNTS:
             nts_dict (dict): Dictionary of trust scores computed by compute().
             filename (str): Filename to save the summary. Defaults to 'trust_summary.csv'.
         """
-       output_dir = Path.cwd() / "trustpy" / "cnts"
+        output_dir = Path.cwd() / "trustpy" / "cnts"
         output_dir.mkdir(parents=True, exist_ok=True)
         
         if not output_dir.exists() or not os.access(output_dir, os.W_OK):
