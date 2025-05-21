@@ -104,21 +104,7 @@ Example Plot for Conditional Trust Spectrum (`trust_spectrum = True`)
 
 I shared the codes for the plots [Python scripts for plots](./assets/plots.py) for users to modify as needed.
 
-## Unit Testing
-All unit tests were run using `pytest` with full coverage prior to release to ensure reliability and correctness.
-
-After installation, you can run all tests to verify everything is working:
-
-```bash
-python -m pytest tests/
-```
-
-Make sure to install pytest first.
-```bash
-pip install pytest
-```
-
-## Plot Generation Testing
+## Post Installation Testing
 You can run this single command to verify that TrustPy runs correctly and can generate trust spectrum plots:  
 For NTS:  
 ```bash
@@ -134,6 +120,21 @@ This will generate a test plot and save it to:
 ```bash
 ./trustpy/nts/trust_spectrum.png
 ./trustpy/cnts/conditional_trust_densities.png
+```
+
+
+## Unit Testing
+All unit tests were run using `pytest` with full coverage prior to release to ensure reliability and correctness.
+
+After installation, you can run all tests to verify everything is working:
+
+```bash
+python -m pytest tests/
+```
+
+Make sure to install pytest first.
+```bash
+pip install pytest
 ```
 
 ## Licence
