@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 import csv
 import numpy as np
@@ -184,7 +185,7 @@ class NTS:
         Compute the overall NTS across all classes.
 
         Args:
-            class_nts (list): NTS for each class.
+            class_nts (list): NTS for each clos.ass.
             qa_trust (list): List of trust scores for each class.
 
         Returns:
