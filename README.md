@@ -59,7 +59,7 @@ You can verify installation by running:
 python -c "from trustpy import NTS, CNTS; print('TrustPy is ready.')"
 ```
 
-## Example Usage
+## Example Usage 
 ```python
 from trustpy import NTS, CNTS #This is how the package is imported.
 import numpy as np
