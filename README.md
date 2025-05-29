@@ -5,6 +5,11 @@
 ![License](https://img.shields.io/pypi/l/trustpy-tools)
 ![Python](https://img.shields.io/pypi/pyversions/trustpy-tools)
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/yaniker/TrustPy/main/assets/logo.png" alt="TrustPy logo" width="300">
+</p>
+
+
 # TrustPy - Trustworthiness Python
 
 Python package for validating AI/ML model reliability and uncertainty **during development and before deployment**. Distributed via Conda-Forge and PyPI.
