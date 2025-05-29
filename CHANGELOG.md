@@ -1,5 +1,17 @@
 All notable changes to this project are documented here.
 
+## Version 2.0.11
+
+Release Date: 2025-05-29
+Added CLI support via `python -m trustpy` and installed entry point (trustpy) for direct command-line execution.
+CLI accepts --oracle, --pred, --mode, --trust_spectrum, and --no_summary flags.
+Introduced CLI unit tests in tests/test_cli.py.
+Plots generated via CLI (--trust_spectrum) are saved to:
+`trustpy/nts/trust_spectrum.png` (for NTS)
+`trustpy/cnts/trust_spectrum.png` and `conditional_trust_densities.png` (for CNTS)
+Updated `trustpy/__init__.py` to reflect version 2.0.11.
+Updated `README` with CLI usage instructions.
+
 ## Version 2.0.10
 Release Date: 2025-05-21
 
