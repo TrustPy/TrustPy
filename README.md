@@ -1,7 +1,7 @@
 <div align="center">
   <img src="https://raw.githubusercontent.com/yaniker/TrustPy/main/assets/logo.jpeg" alt="TrustPy logo" width="300">
 
-  <br><br>
+  <br>
 
   <a href="https://deepwiki.com/yaniker/TrustPy">
     <img src="https://deepwiki.com/badge.svg" alt="Ask DeepWiki">
