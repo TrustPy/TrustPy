@@ -23,7 +23,7 @@ def main():
 
     if args.mode == "nts":
         model = NTS(oracle, predictions, **kwargs)
-    else:
+    elif args.mode == "cnts":
         model = CNTS(oracle, predictions, **kwargs)
 
     results = model.compute()
