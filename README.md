@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://raw.githubusercontent.com/yaniker/TrustPy/main/assets/logo.png" alt="TrustPy logo" width="300">
+</p>
+
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/yaniker/TrustPy)
 ![Downloads](https://static.pepy.tech/badge/trustpy-tools)  
 [![Conda-Forge](https://img.shields.io/conda/vn/conda-forge/trustpy-tools.svg)](https://anaconda.org/conda-forge/trustpy-tools)
