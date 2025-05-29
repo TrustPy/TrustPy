@@ -110,7 +110,7 @@ You can run TrustPy directly from the command line after installation. Example:
 python -m trustpy --oracle oracle.npy --pred preds.npy --mode cnts --trust_spectrum
 ```
 
-For this you will need `oracle.npy` and `preds.npy` ready. You can either use your existing results or generate via running the following:
+For this you will need `oracle.npy` and `preds.npy`. You can either use your existing results or generate via running the following:
 ```bash
 import numpy as np
 
