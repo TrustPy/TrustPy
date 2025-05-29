@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/yaniker/TrustPy/main/assets/logo.png" alt="TrustPy logo" width="300">
+  <img src="https://raw.githubusercontent.com/yaniker/TrustPy/main/assets/logo.jpeg" alt="TrustPy logo" width="300">
 </p>
 
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/yaniker/TrustPy)
