@@ -1,13 +1,19 @@
-<p align="center">
+<div align="center">
   <img src="https://raw.githubusercontent.com/yaniker/TrustPy/main/assets/logo.jpeg" alt="TrustPy logo" width="300">
-</p>
 
-[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/yaniker/TrustPy)
-![Downloads](https://static.pepy.tech/badge/trustpy-tools)  
-[![Conda-Forge](https://img.shields.io/conda/vn/conda-forge/trustpy-tools.svg)](https://anaconda.org/conda-forge/trustpy-tools)
-![PyPI](https://img.shields.io/pypi/v/trustpy-tools)
-![License](https://img.shields.io/pypi/l/trustpy-tools)
-![Python](https://img.shields.io/pypi/pyversions/trustpy-tools)
+  <br><br>
+
+  <a href="https://deepwiki.com/yaniker/TrustPy">
+    <img src="https://deepwiki.com/badge.svg" alt="Ask DeepWiki">
+  </a>
+  <img src="https://static.pepy.tech/badge/trustpy-tools" alt="Downloads">
+  <a href="https://anaconda.org/conda-forge/trustpy-tools">
+    <img src="https://img.shields.io/conda/vn/conda-forge/trustpy-tools.svg" alt="Conda-Forge">
+  </a>
+  <img src="https://img.shields.io/pypi/v/trustpy-tools" alt="PyPI">
+  <img src="https://img.shields.io/pypi/l/trustpy-tools" alt="License">
+  <img src="https://img.shields.io/pypi/pyversions/trustpy-tools" alt="Python">
+</div>
 
 # TrustPy - Trustworthiness Python
 
