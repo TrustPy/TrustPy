@@ -104,6 +104,29 @@ Example Plot for Conditional Trust Spectrum (`trust_spectrum = True`)
 
 I shared the codes for the plots [Python scripts for plots](./assets/plots.py) for users to modify as needed.
 
+## Command Line Interface (CLI)
+You can run TrustPy directly from the command line after installation. Example:
+```bash
+python -m trustpy --oracle oracle.npy --pred preds.npy --mode cnts --trust_spectrum
+```
+
+For this you will need `oracle.npy` and `preds.npy` ready. You can either use your existing results or generate via running the following:
+```bash
+import numpy as np
+
+oracle = np.array([0, 2, 1, 0, 1])
+np.save("oracle.npy", oracle)
+
+predictions = np.array([
+    [0.8, 0.1, 0.1],  # correct
+    [0.0, 0.0, 1.0],  # correct
+    [0.2, 0.7, 0.1],  # correct
+    [0.1, 0.8, 0.1],  # wrong
+    [0.3, 0.3, 0.4],  # wrong
+])
+np.save("preds.npy", predictions)
+```
+
 ## Post Installation Testing
 You can run this single command to verify that TrustPy runs correctly and can generate trust spectrum plots:  
 For NTS:  
