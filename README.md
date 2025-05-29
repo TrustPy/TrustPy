@@ -10,10 +10,14 @@
   <a href="https://anaconda.org/conda-forge/trustpy-tools">
     <img src="https://img.shields.io/conda/vn/conda-forge/trustpy-tools.svg" alt="Conda-Forge">
   </a>
+
+  <br>
+
   <img src="https://img.shields.io/pypi/v/trustpy-tools" alt="PyPI">
   <img src="https://img.shields.io/pypi/l/trustpy-tools" alt="License">
   <img src="https://img.shields.io/pypi/pyversions/trustpy-tools" alt="Python">
 </div>
+
 
 # TrustPy - Trustworthiness Python
 
