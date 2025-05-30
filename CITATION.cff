@@ -1,9 +1,9 @@
 cff-version: 1.2.0
 message: "If you use TrustPy in your work, please cite the following references."
 title: TrustPy
-version: 2.0.11
-date-released: 2025-05-29
-url: https://github.com/yaniker/trustpy
+version: 2.0.11.post1
+date-released: 2025-05-30
+url: https://github.com/TrustPy/TrustPy
 authors:
   - family-names: Yanik
     given-names: Erim

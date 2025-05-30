@@ -1,12 +1,15 @@
 All notable changes to this project are documented here.
 ## Version 2.0.11.post1 (build: 1 for Conda-forge)
+Release Date: 2025-05-30  
+
 Updated project URL and metadata to reflect transfer to new GitHub organization: [`TrustPy/TrustPy`](https://github.com/TrustPy/TrustPy)
 No changes to code, logic, or dependencies.
 Repackaged and re-released on PyPI under PEP 440-compliant post-release tag `2.0.11.post1`.
 
 ## Version 2.0.11
 
-Release Date: 2025-05-29
+Release Date: 2025-05-29  
+
 Added CLI support via `python -m trustpy` and installed entry point (trustpy) for direct command-line execution.
 CLI accepts --oracle, --pred, --mode, --trust_spectrum, and --no_summary flags.
 Introduced CLI unit tests in tests/test_cli.py.
