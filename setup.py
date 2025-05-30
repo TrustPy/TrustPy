@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='trustpy-tools',
+    name='trustpy_tools',
     version='2.0.11.post1',
     author='Erim_Yanik',
     author_email='erimyanik@gmail.com',
