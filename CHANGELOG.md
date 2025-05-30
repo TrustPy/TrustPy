@@ -1,4 +1,8 @@
 All notable changes to this project are documented here.
+## Version 2.0.11.post1 (build: 1 for Conda-forge)
+Updated project URL and metadata to reflect transfer to new GitHub organization: [`TrustPy/TrustPy`](https://github.com/TrustPy/TrustPy)
+No changes to code, logic, or dependencies.
+Repackaged and re-released on PyPI under PEP 440-compliant post-release tag `2.0.11.post1`.
 
 ## Version 2.0.11
 
