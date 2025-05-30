@@ -18,7 +18,7 @@
   <img src="https://img.shields.io/pypi/pyversions/trustpy-tools" alt="Python">
 </div>
 
- 
+
 # TrustPy - Trustworthiness Python
 
 Python package for validating AI/ML model reliability and uncertainty **during development and before deployment**. Distributed via Conda-Forge and PyPI.
