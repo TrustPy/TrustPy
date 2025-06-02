@@ -1,4 +1,10 @@
 All notable changes to this project are documented here.
+## Version 2.0.12
+Release Date: 2025-06-02  
+
+Added `__repr__()` methods to `NTS` and `CNTS` classes for object introspection.
+Objects now display key configuration details when printed.
+
 ## Version 2.0.11.post1 (build: 1 for Conda-forge)
 Release Date: 2025-05-30  
 
