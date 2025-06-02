@@ -20,7 +20,8 @@ setup(
         'dev': [
             'pytest',
             'build',
-            'twine'
+            'twine',
+            'bump2version'
         ]
     },
     classifiers=[
