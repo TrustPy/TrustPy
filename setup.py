@@ -10,6 +10,7 @@ setup(
     long_description_content_type='text/markdown',
     url='https://github.com/TrustPy/TrustPy',
     packages=find_packages(include=['trustpy', 'trustpy.*']),
+    include_package_data=True,
     install_requires=[
         'numpy>=1.20',
         'scikit-learn>=1.0',
