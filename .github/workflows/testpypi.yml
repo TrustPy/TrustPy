@@ -1,0 +1,40 @@
+name: Dry run to TestPyPI
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install build and test deps
+        run: |
+          pip install .[dev]
+
+      - name: Run tests
+        run: |
+          PYTHONPATH=. pytest tests/
+
+      - name: Build
+        run: |
+          python -m build
+
+      - name: Check metadata
+        run: |
+          twine check dist/*
+
+      - name: Upload to TestPyPI
+        env:
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ secrets.TEST_PYPI_API_TOKEN }}
+        run: |
+          twine upload --repository-url https://test.pypi.org/legacy/ dist/*
