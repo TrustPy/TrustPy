@@ -330,3 +330,12 @@ class CNTS:
                 incorrect = nts_dict.get(f'class_{c}_incorrect', '-')
                 writer.writerow([c, overall, correct, incorrect])
             writer.writerow(['Overall', nts_dict.get('overall', '-'), '', ''])
+
+    def __repr__(self) -> str:
+        return (
+            f"CNTS(n_classes={self.predictions.shape[1]}, "
+            f"alpha={self.alpha}, beta={self.beta}, "
+            f"trust_spectrum={self.trust_spectrum}, "
+            f"show_summary={self.show_summary}, "
+            f"export_summary={self.export_summary})"
+        )
