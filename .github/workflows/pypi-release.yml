@@ -1,0 +1,43 @@
+name: Publish to PyPI
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  build-test-publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install build + test dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install .[dev] pytest build twine
+
+      - name: Run unit tests
+        run: |
+          PYTHONPATH=. pytest tests/
+
+      - name: Build package
+        run: |
+          python -m build
+
+      - name: Check package metadata
+        run: |
+          twine check dist/*
+
+      - name: Publish to PyPI
+        env:
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
+        run: |
+          twine upload dist/*
