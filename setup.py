@@ -16,6 +16,13 @@ setup(
         'scikit-learn>=1.0',
         'matplotlib>=3.0'
     ],
+    extras_require={
+        'dev': [
+            'pytest',
+            'build',
+            'twine'
+        ]
+    },
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
