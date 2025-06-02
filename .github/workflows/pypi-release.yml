@@ -26,3 +26,18 @@ jobs:
       - name: Run unit tests
         run: |
           PYTHONPATH=. pytest tests/
+
+      - name: Build package
+        run: |
+          python -m build
+
+      - name: Check package metadata
+        run: |
+          twine check dist/*
+
+      - name: Publish to PyPI
+        env:
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
+        run: |
+          twine upload dist/*
