@@ -1,4 +1,17 @@
 All notable changes to this project are documented here.
+## Version 2.0.13
+Release Date: 2025-06-07  
+
+Updated CLI help message for `--mode`. Now it clearly explains selecting nts and cnts with reasoning.
+Added `.bumpversion.cfg` for consistent version management across files.
+Integrated `flake8` linting into CI for code quality enforcement.
+
+!!! **Upcoming in v3.0.0** !!!  
+
+The next release will be a major update that restructures the codebase to adopt full scikit-learn API conventions to ensure compatibility with scikit-learn pipelines and common conventions. 
+TrustPy v2.x will remain usable, but will no longer receive new features once v3.0.0 is released.
+
+
 ## Version 2.0.12
 Release Date: 2025-06-02  
 
