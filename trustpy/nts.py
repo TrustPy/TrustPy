@@ -13,8 +13,8 @@ class NTS:
                  show_summary: bool = True,
                  export_summary: bool = True) -> None:
         """
-        It computes trust scores for each class, estimates trust density using KDE, and calculates per-class and overall NetTrustScore (NTS). 
-	Optionally plots trust spectrum.
+        It computes trust scores for each class, estimates trust density using KDE, and calculates
+	per-class and overall NetTrustScore (NTS). Optionally plots trust spectrum.
 
         Args:
             oracle (np.ndarray): True labels.
@@ -37,30 +37,30 @@ class NTS:
 
         assert oracle.ndim == 1, 'Oracle, test samples, must be a 1D array'
         assert predictions.ndim == 2, 'Predictions must be a 2D array'
-        
-        assert oracle.shape[0] == predictions.shape[0], ( 
-	    f'Number of samples mismatch: oracle, test samples, ({oracle.shape[0]}) vs predictions ({predictions.shape[0]})'
-)
+
+        assert oracle.shape[0] == predictions.shape[0], (
+		f'Number of samples mismatch: oracle, test samples, ({oracle.shape[0]}) vs predictions ({predictions.shape[0]})'
+	)
         assert predictions.shape[1] >= 2, (
-            f'Predictions must have at least 2 unique classes for NTS to generate meaninful results, but got {predictions.shape[1]} class (shape: {predictions.shape})'
-)
+		f'Predictions must have at least 2 unique classes for NTS to generate meaninful results, but got {predictions.shape[1]} class (shape: {predictions.shape})'  # noqa: E501
+	)
         assert len(np.unique(oracle)) >= 2, (
-            f'Oracle, test samples, must contain at least 2 unique classes for NTS to generate meaninful results, but got {len(np.unique(oracle))}'
-)
+		f'Oracle, test samples, must contain at least 2 unique classes for NTS to generate meaninful results, but got {len(np.unique(oracle))}'  # noqa: E501
+	)
         assert len(np.unique(oracle)) == predictions.shape[1], (
-            f'Oracle, test samples, and predictions have different number of unique classes: oracle: ({len(np.unique(oracle))}) vs. predictions: ({predictions.shape[1]}).'
-)
+		f'Oracle, test samples, and predictions have different number of unique classes: oracle: ({len(np.unique(oracle))}) vs. predictions: ({predictions.shape[1]}).'  # noqa: E501
+	)
 
         alpha = float(alpha)
         beta = float(beta)
         assert alpha > 0, 'alpha must be positive'
         assert beta > 0, 'beta must be positive'
         assert np.all((predictions >= 0) & (predictions <= 1)), (
-	    'Predictions must be between 0 and 1'
-)
+		'Predictions must be between 0 and 1'
+	)
         assert np.allclose(predictions.sum(axis=1), 1, atol=1e-5), (
-	    'Each row of SoftMax predictions must sum to 1'
-)
+		'Each row of SoftMax predictions must sum to 1'
+	)
 
         self.oracle = oracle
         self.predictions = predictions
@@ -87,10 +87,10 @@ class NTS:
             self._plot_trust_spectrum(class_nts, density_curves, x_range, n_classes)
 
         overall_nts = self._compute_overall_NTS(class_nts, qa_trust)
-        
+
         nts_dict = {f'class_{i}': float(round(nts, 3)) for i, nts in enumerate(class_nts)}
         nts_dict['overall'] = float(round(overall_nts, 3))
-	
+
         if self.show_summary:
             self.print_summary(nts_dict)
 
@@ -110,7 +110,7 @@ class NTS:
             list: List of lists, each containing trust scores for a class.
         """
         predicted_class = np.argmax(self.predictions, axis=1)
-        
+
         qa_trust = [[] for _ in range(n_classes)]
         for i in range(self.oracle.shape[0]):
             true_label = self.oracle[i]
@@ -162,7 +162,7 @@ class NTS:
         assert isinstance(filename, str), 'filename must be a string'
         if not filename.lower().endswith(('.png', '.jpg', '.jpeg', '.svg', '.pdf')):
             filename += '.png'
-                                 
+
         class_labels = [f'Class {i}' for i in range(n_classes)]
         colors = plt.cm.tab10(np.arange(n_classes))
         fig, ax = plt.subplots(figsize=(6 * n_classes, 6), ncols=n_classes, sharey=True)
@@ -177,10 +177,10 @@ class NTS:
             ax[c].tick_params(labelsize=24)
             ax[c].set_title(f'{class_labels[c]}\nNTS = {class_nts[c]:.3f}', fontsize=24)
         plt.tight_layout()
-        
+
         output_dir = Path.cwd() / "trustpy" / "nts"
         output_dir.mkdir(parents=True, exist_ok=True)
-        
+
         if not output_dir.exists() or not os.access(output_dir, os.W_OK):
             raise PermissionError(f"Cannot write to directory: {output_dir}")
 
@@ -243,7 +243,6 @@ class NTS:
             for c in classes:
                 writer.writerow([c, nts_dict[f'class_{c}']])
             writer.writerow(['Overall', nts_dict.get('overall', '-')])
-
 
     def __repr__(self) -> str:
         return (
