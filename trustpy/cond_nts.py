@@ -5,6 +5,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.neighbors import KernelDensity
 
+
 class CNTS:
     def __init__(self, oracle: np.ndarray, predictions: np.ndarray, *,
                  alpha: float = 1.0, beta: float = 1.0,
@@ -12,7 +13,8 @@ class CNTS:
                  show_summary: bool = True,
                  export_summary: bool = True) -> None:
         """
-        Initializes the Trustworthiness class for computing trust scores, densities, and NTS. Optionally plots trust spectrum.
+        Initializes the Trustworthiness class for computing trust scores, densities, and NTS.
+        Optionally plots trust spectrum.
 
         Args:
             oracle (np.ndarray): True labels.
@@ -20,8 +22,10 @@ class CNTS:
             alpha (float): Reward factor for correct predictions. Defaults to 1.0.
             beta (float): Penalty factor for incorrect predictions. Defaults to 1.0.
             trust_spectrum (bool): If True, plots the trust spectrum. Defaults to False.
-            show_summary (bool): If True, prints a summary table of NTS, conditional NTS values. Defaults to True.
-            export_summary (bool): If True, saves a summary table of NTS, conditional NTS values to a CSV file. Defaults to True.
+            show_summary (bool): If True, prints a summary table of NTS, conditional NTS values.
+            Defaults to True.
+            export_summary (bool): If True, saves a summary table of NTS, conditional NTS values to a CSV file.
+            Defaults to True.
         """
 
         assert isinstance(oracle, np.ndarray), 'Oracle, test samples, must be a NumPy array'
@@ -34,8 +38,9 @@ class CNTS:
 
         assert oracle.ndim == 1, 'Oracle, test samples, must be a 1D array'
         assert predictions.ndim == 2, 'Predictions must be a 2D array'
-        
-        assert oracle.shape[0] == predictions.shape[0], (f'Number of samples mismatch: oracle (test samples) ({oracle.shape[0]}) vs predictions ({predictions.shape[0]})')
+
+        assert oracle.shape[0] == predictions.shape[0],
+                     (f'Number of samples mismatch: oracle (test samples) ({oracle.shape[0]}) vs predictions ({predictions.shape[0]})')
 
         assert predictions.shape[1] >= 2, (
             f'Predictions must have at least 2 unique classes for conditional NTS to generate meaninful results, but got {predictions.shape[1]}'
@@ -51,8 +56,10 @@ class CNTS:
         beta = float(beta)
         assert alpha > 0, 'alpha must be positive'
         assert beta > 0, 'beta must be positive'
-        assert np.all((predictions >= 0) & (predictions <= 1)), 'Predictions must be between 0 and 1'
-        assert np.allclose(predictions.sum(axis = 1), 1, atol = 1e-5), 'Each row of SoftMax predictions must sum to 1'
+        assert np.all((predictions >= 0) & (predictions <= 1)), 
+                     'Predictions must be between 0 and 1'
+        assert np.allclose(predictions.sum(axis = 1), 1, atol = 1e-5),
+                     'Each row of SoftMax predictions must sum to 1'
 
         self.oracle = oracle
         self.predictions = predictions
