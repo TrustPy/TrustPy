@@ -6,7 +6,7 @@ def main():
     parser = argparse.ArgumentParser(description="Run TrustPy trustworthiness evaluation.")
     parser.add_argument("--oracle", type=str, required=True, help="Path to .npy file containing ground truth labels")
     parser.add_argument("--pred", type=str, required=True, help="Path to .npy file containing model predictions (SoftMax)")
-    parser.add_argument("--mode", type=str, choices=["nts", "cnts"], required=True, help="Which trust metric to use: nts or cnts")
+    parser.add_argument("--mode", type=str, choices=["nts", "cnts"], required=True, help="Select trust metric mode: 'nts' (NetTrustScore) for overall trust behavior, or 'cnts' (Conditional NetTrustScore) for class-conditional trust analysis.")
     parser.add_argument("--trust_spectrum", action="store_true", help="Generate trust spectrum plots")
     parser.add_argument("--no_summary", action="store_true", help="Disable printed summary and CSV export")
 
