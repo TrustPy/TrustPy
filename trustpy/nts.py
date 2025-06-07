@@ -13,9 +13,10 @@ class NTS:
                  show_summary: bool = True,
                  export_summary: bool = True) -> None:
         """
-        It computes trust scores for each class, estimates trust density using KDE, and calculates
-	per-class and overall NetTrustScore (NTS). Optionally plots trust spectrum.
-
+        Computes trust scores per class, estimates trust density via KDE,
+        and calculates both per-class and overall NetTrustScore (NTS).
+        Optionally plots the trust spectrum.
+	
         Args:
             oracle (np.ndarray): True labels.
             predictions (np.ndarray): SoftMax probabilities predicted by a model (e.g., DNNs).
