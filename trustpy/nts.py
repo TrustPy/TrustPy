@@ -55,8 +55,12 @@ class NTS:
         beta = float(beta)
         assert alpha > 0, 'alpha must be positive'
         assert beta > 0, 'beta must be positive'
-        assert np.all((predictions >= 0) & (predictions <= 1)), 'Predictions must be between 0 and 1'
-        assert np.allclose(predictions.sum(axis=1), 1, atol=1e-5), 'Each row of SoftMax predictions must sum to 1'
+        assert np.all((predictions >= 0) & (predictions <= 1)), (
+	    'Predictions must be between 0 and 1'
+)
+        assert np.allclose(predictions.sum(axis=1), 1, atol=1e-5), (
+	    'Each row of SoftMax predictions must sum to 1'
+)
 
         self.oracle = oracle
         self.predictions = predictions
