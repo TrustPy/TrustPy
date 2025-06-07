@@ -39,9 +39,7 @@ class CNTS:
         assert oracle.ndim == 1, 'Oracle, test samples, must be a 1D array'
         assert predictions.ndim == 2, 'Predictions must be a 2D array'
 
-        assert oracle.shape[0] == predictions.shape[0], (
-		f'Number of samples mismatch: oracle (test samples) ({oracle.shape[0]}) vs predictions ({predictions.shape[0]})'  # noqa: E501
-	)
+        assert oracle.shape[0] == predictions.shape[0], f'Number of samples mismatch: oracle (test samples) ({oracle.shape[0]}) vs predictions ({predictions.shape[0]})'  # noqa: E501
         assert predictions.shape[1] >= 2, f'Predictions must have at least 2 unique classes for conditional NTS to generate meaninful results, but got {predictions.shape[1]}'  # noqa: E501
         assert len(np.unique(oracle)) >= 2, f'Oracle, test samples, must contain at least 2 unique classes for conditional NTS to generate meaninful results, but got {len(np.unique(oracle))} class (shape: {len(np.unique(oracle))})'  # noqa: E501
         assert len(np.unique(oracle)) == predictions.shape[1], f'Oracle, test samples, and predictions have different number of unique classes: oracle: ({len(np.unique(oracle))}) vs. predictions: ({predictions.shape[1]}).'  # noqa: E501
@@ -51,7 +49,7 @@ class CNTS:
         assert alpha > 0, 'alpha must be positive'
         assert beta > 0, 'beta must be positive'
         assert np.all((predictions >= 0) & (predictions <= 1)), 'Predictions must be between 0 and 1'  # noqa: E501
-        assert np.allclose(predictions.sum(axis = 1), 1, atol = 1e-5), 'Each row of SoftMax predictions must sum to 1'  # noqa: E501
+        assert np.allclose(predictions.sum(axis=1), 1, atol=1e-5), 'Each row of SoftMax predictions must sum to 1'  # noqa: E501
 
         self.oracle = oracle
         self.predictions = predictions
