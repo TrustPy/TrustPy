@@ -21,7 +21,12 @@
  
 # TrustPy - Trustworthiness Python
 
-Python package for validating AI/ML model reliability and uncertainty **during development and before deployment**. Distributed via Conda-Forge and PyPI.
+TrustPy is a lightweight, framework-agnostic Python library for assessing the reliability, calibration, and uncertainty of predictive models across the AI/ML lifecycle.
+Designed with MLOps, model validation, and governance in mind, it enables teams to quantify trust before production rollout—ensuring models behave as expected under real-world conditions.
+
+🔧 Works out-of-the-box with any ML framework
+📦 Released on Conda-Forge and PyPI
+🔁 Maintained with full CI/CD support and test coverage
 
 ###
 **The implementation is flexible and works out-the-box with any AI/ML library.**

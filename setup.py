@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='trustpy_tools',
-    version='2.0.12',
+    version='2.0.13',
     author='Erim_Yanik',
     author_email='erimyanik@gmail.com',
     description='Trustworthiness metrics and calibration tools for predictive models',
@@ -20,7 +20,8 @@ setup(
         'dev': [
             'pytest',
             'build',
-            'twine'
+            'twine',
+            'bump2version'
         ]
     },
     classifiers=[

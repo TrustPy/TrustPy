@@ -20,6 +20,12 @@ jobs:
         run: |
           pip install .[dev]
 
+      - name: Lint code with flake8
+        run: |
+          pip install flake8
+          flake8 trustpy --count --select=E9,F63,F7,F82 --show-source --statistics
+          flake8 trustpy --count --max-complexity=10 --max-line-length=120 --statistics
+
       - name: Run tests
         run: |
           PYTHONPATH=. pytest tests/

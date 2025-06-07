@@ -5,6 +5,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.neighbors import KernelDensity
 
+
 class CNTS:
     def __init__(self, oracle: np.ndarray, predictions: np.ndarray, *,
                  alpha: float = 1.0, beta: float = 1.0,
@@ -12,7 +13,8 @@ class CNTS:
                  show_summary: bool = True,
                  export_summary: bool = True) -> None:
         """
-        Initializes the Trustworthiness class for computing trust scores, densities, and NTS. Optionally plots trust spectrum.
+        Initializes the Trustworthiness class for computing trust scores, densities, and NTS.
+        Optionally plots trust spectrum.
 
         Args:
             oracle (np.ndarray): True labels.
@@ -20,8 +22,10 @@ class CNTS:
             alpha (float): Reward factor for correct predictions. Defaults to 1.0.
             beta (float): Penalty factor for incorrect predictions. Defaults to 1.0.
             trust_spectrum (bool): If True, plots the trust spectrum. Defaults to False.
-            show_summary (bool): If True, prints a summary table of NTS, conditional NTS values. Defaults to True.
-            export_summary (bool): If True, saves a summary table of NTS, conditional NTS values to a CSV file. Defaults to True.
+            show_summary (bool): If True, prints a summary table of NTS, conditional NTS values.
+            Defaults to True.
+            export_summary (bool): If True, saves a summary table of NTS, conditional NTS values to a CSV file.
+            Defaults to True.
         """
 
         assert isinstance(oracle, np.ndarray), 'Oracle, test samples, must be a NumPy array'
@@ -34,25 +38,18 @@ class CNTS:
 
         assert oracle.ndim == 1, 'Oracle, test samples, must be a 1D array'
         assert predictions.ndim == 2, 'Predictions must be a 2D array'
-        
-        assert oracle.shape[0] == predictions.shape[0], (f'Number of samples mismatch: oracle (test samples) ({oracle.shape[0]}) vs predictions ({predictions.shape[0]})')
 
-        assert predictions.shape[1] >= 2, (
-            f'Predictions must have at least 2 unique classes for conditional NTS to generate meaninful results, but got {predictions.shape[1]}'
-        )
-        assert len(np.unique(oracle)) >= 2, (
-            f'Oracle, test samples, must contain at least 2 unique classes for conditional NTS to generate meaninful results, but got {len(np.unique(oracle))} class (shape: {len(np.unique(oracle))})'
-)
-        assert len(np.unique(oracle)) == predictions.shape[1], (
-            f'Oracle, test samples, and predictions have different number of unique classes: oracle: ({len(np.unique(oracle))}) vs. predictions: ({predictions.shape[1]}).'
-)
+        assert oracle.shape[0] == predictions.shape[0], f'Number of samples mismatch: oracle (test samples) ({oracle.shape[0]}) vs predictions ({predictions.shape[0]})'  # noqa: E501
+        assert predictions.shape[1] >= 2, f'Predictions must have at least 2 unique classes for conditional NTS to generate meaninful results, but got {predictions.shape[1]}'  # noqa: E501
+        assert len(np.unique(oracle)) >= 2, f'Oracle, test samples, must contain at least 2 unique classes for conditional NTS to generate meaninful results, but got {len(np.unique(oracle))} class (shape: {len(np.unique(oracle))})'  # noqa: E501
+        assert len(np.unique(oracle)) == predictions.shape[1], f'Oracle, test samples, and predictions have different number of unique classes: oracle: ({len(np.unique(oracle))}) vs. predictions: ({predictions.shape[1]}).'  # noqa: E501
 
         alpha = float(alpha)
         beta = float(beta)
         assert alpha > 0, 'alpha must be positive'
         assert beta > 0, 'beta must be positive'
-        assert np.all((predictions >= 0) & (predictions <= 1)), 'Predictions must be between 0 and 1'
-        assert np.allclose(predictions.sum(axis = 1), 1, atol = 1e-5), 'Each row of SoftMax predictions must sum to 1'
+        assert np.all((predictions >= 0) & (predictions <= 1)), 'Predictions must be between 0 and 1'  # noqa: E501
+        assert np.allclose(predictions.sum(axis=1), 1, atol=1e-5), 'Each row of SoftMax predictions must sum to 1'  # noqa: E501
 
         self.oracle = oracle
         self.predictions = predictions
@@ -78,8 +75,8 @@ class CNTS:
         qa_trust = self._compute_question_answer_trust(n_classes)
 
         correct_trust, incorrect_trust = self._compute_conditional_trust(n_classes)
-        assert len(correct_trust) == n_classes, f'correct_trust_length ({len(correct_trust)}) must match n_classes ({n_classes})'
-        assert len(incorrect_trust) == n_classes, f'incorrect_trust_length ({len(incorrect_trust)}) must match n_classes ({n_classes})'
+        assert len(correct_trust) == n_classes, f'correct_trust_length ({len(correct_trust)}) must match n_classes ({n_classes})'  # noqa: E501
+        assert len(incorrect_trust) == n_classes, f'incorrect_trust_length ({len(incorrect_trust)}) must match n_classes ({n_classes})'  # noqa: E501
 
         # Compute overall NTS
         class_nts, density_curves, x_range = self._compute_trust_density(qa_trust)
@@ -194,7 +191,7 @@ class CNTS:
         assert isinstance(filename, str), 'filename must be a string'
         if not filename.lower().endswith(('.png', '.jpg', '.jpeg', '.svg', '.pdf')):
             filename += '.png'
-                                 
+
         class_labels = [f'Class {i}' for i in range(n_classes)]
         colors = plt.cm.tab10(np.arange(n_classes))
         fig, ax = plt.subplots(figsize=(6 * n_classes, 6), ncols=n_classes, sharey=True)
@@ -212,10 +209,10 @@ class CNTS:
 
         output_dir = Path.cwd() / "trustpy" / "cnts"
         output_dir.mkdir(parents=True, exist_ok=True)
-        
+
         if not output_dir.exists() or not os.access(output_dir, os.W_OK):
             raise PermissionError(f"Cannot write to directory: {output_dir}")
-        
+
         filepath = output_dir / filename
         plt.savefig(filepath)
         plt.close()
@@ -224,7 +221,7 @@ class CNTS:
                                           filename: str = 'conditional_trust_densities.png') -> None:
         """
         Plot the conditional trust density curves for correct and incorrect predictions per class.
-        
+
         Args:
             correct_trust (list): Trust scores for correct predictions per class.
             incorrect_trust (list): Trust scores for incorrect predictions per class.
@@ -233,7 +230,7 @@ class CNTS:
         assert isinstance(filename, str), 'filename must be a string'
         if not filename.lower().endswith(('.png', '.jpg', '.jpeg', '.svg', '.pdf')):
             filename += '.png'
-        
+
         x_range = np.linspace(0, 1, 100)
         fig, ax = plt.subplots(figsize=(6 * n_classes, 6), ncols=n_classes, sharey=True)
         if n_classes == 1:
@@ -261,12 +258,12 @@ class CNTS:
 
         output_dir = Path.cwd() / "trustpy" / "cnts"
         output_dir.mkdir(parents=True, exist_ok=True)
-        
+
         if not output_dir.exists() or not os.access(output_dir, os.W_OK):
             raise PermissionError(f"Cannot write to directory: {output_dir}")
-        
+
         filepath = output_dir / filename
-        plt.savefig(filepath)                                     
+        plt.savefig(filepath)
         plt.close()
 
     def _compute_overall_NTS(self, class_nts: list, qa_trust: list) -> float:
@@ -291,7 +288,7 @@ class CNTS:
         Args:
             nts_dict (dict): Dictionary of trust scores computed by compute().
         """
-        classes = sorted(set(k.split('_')[1] for k in nts_dict.keys() if k.startswith('class_') and 'correct' not in k and 'incorrect' not in k))
+        classes = sorted(set(k.split('_')[1] for k in nts_dict.keys() if k.startswith('class_') and 'correct' not in k and 'incorrect' not in k))  # noqa: E501
         print(f"{'Class':<10} {'Overall':<10} {'Correct':<10} {'Incorrect':<10}")
         print("-" * 40)
         for c in classes:
@@ -312,14 +309,14 @@ class CNTS:
         """
         output_dir = Path.cwd() / "trustpy" / "cnts"
         output_dir.mkdir(parents=True, exist_ok=True)
-        
+
         if not output_dir.exists() or not os.access(output_dir, os.W_OK):
             raise PermissionError(f"Cannot write to directory: {output_dir}")
-        
+
         filepath = output_dir / filename
 
         fields = ['Class', 'Overall', 'Correct', 'Incorrect']
-        classes = sorted(set(k.split('_')[1] for k in nts_dict.keys() if k.startswith('class_') and 'correct' not in k and 'incorrect' not in k))
+        classes = sorted(set(k.split('_')[1] for k in nts_dict.keys() if k.startswith('class_') and 'correct' not in k and 'incorrect' not in k))  # noqa: E501
 
         with open(filepath, mode='w', newline='') as f:
             writer = csv.writer(f)
