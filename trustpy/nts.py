@@ -5,6 +5,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.neighbors import KernelDensity
 
+
 class NTS:
     def __init__(self, oracle: np.ndarray, predictions: np.ndarray, *,
                  alpha: float = 1.0, beta: float = 1.0,
@@ -12,7 +13,8 @@ class NTS:
                  show_summary: bool = True,
                  export_summary: bool = True) -> None:
         """
-        It computes trust scores for each class, estimates trust density using KDE, and calculates per-class and overall NetTrustScore (NTS). Optionally plots trust spectrum.
+        It computes trust scores for each class, estimates trust density using KDE, and calculates per-class and overall NetTrustScore (NTS). 
+	Optionally plots trust spectrum.
 
         Args:
             oracle (np.ndarray): True labels.
@@ -21,7 +23,8 @@ class NTS:
             beta (float): Penalty factor for incorrect predictions. Defaults to 1.0.
             trust_spectrum (bool): If True plots the trust spectrum. Defaults to False.
             show_summary (bool): If True, prints a summary table of NTS values. Defaults to True.
-            export_summary (bool): If True, saves a summary table of NTS values to a CSV file. Defaults to True.
+            export_summary (bool): If True, saves a summary table of NTS values to a CSV file.
+	    Defaults to True.
         """
 
         assert isinstance(oracle, np.ndarray), 'Oracle, test samples, must be a NumPy array'
@@ -35,7 +38,8 @@ class NTS:
         assert oracle.ndim == 1, 'Oracle, test samples, must be a 1D array'
         assert predictions.ndim == 2, 'Predictions must be a 2D array'
         
-        assert oracle.shape[0] == predictions.shape[0], f'Number of samples mismatch: oracle, test samples, ({oracle.shape[0]}) vs predictions ({predictions.shape[0]})'
+        assert oracle.shape[0] == predictions.shape[0], 
+			 f'Number of samples mismatch: oracle, test samples, ({oracle.shape[0]}) vs predictions ({predictions.shape[0]})'
         
         assert predictions.shape[1] >= 2, (
             f'Predictions must have at least 2 unique classes for NTS to generate meaninful results, but got {predictions.shape[1]} class (shape: {predictions.shape})'
