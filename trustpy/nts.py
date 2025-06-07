@@ -16,7 +16,7 @@ class NTS:
         Computes trust scores per class, estimates trust density via KDE,
         and calculates both per-class and overall NetTrustScore (NTS).
         Optionally plots the trust spectrum.
-	
+
         Args:
             oracle (np.ndarray): True labels.
             predictions (np.ndarray): SoftMax probabilities predicted by a model (e.g., DNNs).
@@ -24,8 +24,7 @@ class NTS:
             beta (float): Penalty factor for incorrect predictions. Defaults to 1.0.
             trust_spectrum (bool): If True plots the trust spectrum. Defaults to False.
             show_summary (bool): If True, prints a summary table of NTS values. Defaults to True.
-            export_summary (bool): If True, saves a summary table of NTS values to a CSV file.
-	    Defaults to True.
+            export_summary (bool): If True, saves a summary table of NTS values to a CSV file. Defaults to True.
         """
 
         assert isinstance(oracle, np.ndarray), 'Oracle, test samples, must be a NumPy array'
