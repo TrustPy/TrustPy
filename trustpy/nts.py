@@ -38,9 +38,9 @@ class NTS:
         assert oracle.ndim == 1, 'Oracle, test samples, must be a 1D array'
         assert predictions.ndim == 2, 'Predictions must be a 2D array'
         
-        assert oracle.shape[0] == predictions.shape[0], 
-			 f'Number of samples mismatch: oracle, test samples, ({oracle.shape[0]}) vs predictions ({predictions.shape[0]})'
-        
+        assert oracle.shape[0] == predictions.shape[0], ( 
+	    f'Number of samples mismatch: oracle, test samples, ({oracle.shape[0]}) vs predictions ({predictions.shape[0]})'
+)
         assert predictions.shape[1] >= 2, (
             f'Predictions must have at least 2 unique classes for NTS to generate meaninful results, but got {predictions.shape[1]} class (shape: {predictions.shape})'
 )
