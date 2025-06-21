@@ -1,4 +1,17 @@
 All notable changes to this project are documented here.
+## Version 2.0.14
+Release Date: 2025-06-21
+
+Introduced --output_dir flag to the CLI, allowing users to specify a custom directory for saving plots and CSV summaries.
+Both NTS and CNTS now accept an output_dir argument to programmatically control output location.
+If output_dir is not set, results default to:
+
+trustpy/nts/ (for NTS)
+trustpy/cnts/ (for CNTS)
+
+Added unit tests and CLI tests to ensure output is correctly saved and isolated.
+Updated README examples, CLI section, and usage notes.
+
 ## Version 2.0.13
 Release Date: 2025-06-07  
 
