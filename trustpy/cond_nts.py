@@ -11,7 +11,8 @@ class CNTS:
                  alpha: float = 1.0, beta: float = 1.0,
                  trust_spectrum: bool = False,
                  show_summary: bool = True,
-                 export_summary: bool = True) -> None:
+                 export_summary: bool = True,
+                 output_dir: str = None) -> None:
         """
         Initializes the Trustworthiness class for computing trust scores, densities, and NTS.
         Optionally plots trust spectrum.
@@ -58,6 +59,7 @@ class CNTS:
         self.trust_spectrum = trust_spectrum
         self.show_summary = show_summary
         self.export_summary = export_summary
+        self.output_dir = Path(output_dir) if output_dir else Path.cwd() / "trustpy" / "cnts"
 
     def compute(self) -> dict:
         """
@@ -207,7 +209,7 @@ class CNTS:
             ax[c].set_title(f'{class_labels[c]}\nNTS = {class_nts[c]:.3f}', fontsize=24)
         plt.tight_layout()
 
-        output_dir = Path.cwd() / "trustpy" / "cnts"
+        output_dir = self.output_dir
         output_dir.mkdir(parents=True, exist_ok=True)
 
         if not output_dir.exists() or not os.access(output_dir, os.W_OK):
@@ -256,7 +258,7 @@ class CNTS:
             ax[c].tick_params(labelsize=24)
         plt.tight_layout()
 
-        output_dir = Path.cwd() / "trustpy" / "cnts"
+        output_dir = self.output_dir
         output_dir.mkdir(parents=True, exist_ok=True)
 
         if not output_dir.exists() or not os.access(output_dir, os.W_OK):
@@ -307,7 +309,7 @@ class CNTS:
             nts_dict (dict): Dictionary of trust scores computed by compute().
             filename (str): Filename to save the summary. Defaults to 'trust_summary.csv'.
         """
-        output_dir = Path.cwd() / "trustpy" / "cnts"
+        output_dir = self.output_dir
         output_dir.mkdir(parents=True, exist_ok=True)
 
         if not output_dir.exists() or not os.access(output_dir, os.W_OK):
@@ -334,5 +336,6 @@ class CNTS:
             f"alpha={self.alpha}, beta={self.beta}, "
             f"trust_spectrum={self.trust_spectrum}, "
             f"show_summary={self.show_summary}, "
-            f"export_summary={self.export_summary})"
+            f"export_summary={self.export_summary}, "
+            f"output_dir='{self.output_dir}')"
         )
