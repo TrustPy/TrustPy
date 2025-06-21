@@ -7,6 +7,8 @@ def main():
     parser = argparse.ArgumentParser(description="Run TrustPy trustworthiness evaluation.")
     parser.add_argument("--oracle", type=str, required=True,
                         help="Path to .npy file containing ground truth labels")
+    parser.add_argument("--output_dir", type=str, default=None,
+                        help="Optional path to save plots and summaries")
     parser.add_argument("--pred", type=str, required=True,
                         help="Path to .npy file containing model predictions (SoftMax)")
     parser.add_argument("--mode", type=str, choices=["nts", "cnts"], required=True,
@@ -26,6 +28,9 @@ def main():
         "show_summary": not args.no_summary,
         "export_summary": not args.no_summary
     }
+
+    if args.output_dir:
+        kwargs["output_dir"] = args.output_dir
 
     if args.mode == "nts":
         model = NTS(oracle, predictions, **kwargs)
