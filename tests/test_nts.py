@@ -122,3 +122,23 @@ def test_all_incorrect():
     scores = nts.compute()
     # All wrong → trust scores should be low
     assert abs(scores["overall"] - 0.2) < 1e-3
+
+def test_custom_output_dir_cleanup(tmp_path):
+    # Arrange
+    oracle = np.array([0, 1, 1, 0])
+    preds = np.array([
+        [0.8, 0.2],
+        [0.3, 0.7],
+        [0.4, 0.6],
+        [0.9, 0.1],
+    ])
+    output_dir = tmp_path / "nts_output"
+
+    # Act
+    nts = NTS(oracle, preds, trust_spectrum=True, export_summary=True, show_summary=False, output_dir=str(output_dir))
+    nts.compute()
+
+    # Assert
+    assert output_dir.exists(), "Output directory was not created"
+    files = list(output_dir.glob("*"))
+    assert any(f.name.endswith(".png") or f.name.endswith(".csv") for f in files), "Expected output files not found"
