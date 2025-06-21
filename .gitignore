@@ -10,3 +10,5 @@ all_code_combined.txt
 oracle.npy
 preds.npy
 generate_test_data.py
+.idea/
+
