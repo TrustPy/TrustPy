@@ -30,6 +30,10 @@ jobs:
         run: |
           PYTHONPATH=. pytest tests/
 
+      - name: Clean old builds
+        run: |
+          rm -rf dist/ build/ *.egg-info
+
       - name: Build
         run: |
           python -m build
