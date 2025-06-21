@@ -108,10 +108,11 @@ cnts_scores_dict = cnts.compute() # Computes trustworthiness for each class and 
 
 # Sets show_summary=True to print the results table.
 # Sets export_summary=True to save the results.
-# Sets trust_spectrum=True to generate plots like:
-# - trustpy/nts/trust_spectrum.png (for NTS)
-# - trustpy/cnts/trust_spectrum.png and conditional_trust_densities.png (for CNTS)
-
+# Sets trust_spectrum=True to generate plots.
+# By default, results are saved to:
+# - trustpy/nts/ (for NTS)
+# - trustpy/cnts/ (for CNTS)
+# You can override this using `output_dir=your_path`
 
 ```
 
@@ -124,9 +125,9 @@ Example Plot for Conditional Trust Spectrum (`trust_spectrum = True`)
 I shared the codes for the plots [Python scripts for plots](./assets/plots.py) for users to modify as needed.
 
 ## Command Line Interface (CLI)
-You can run TrustPy directly from the command line after installation. Example:
+You can run TrustPy directly from the command line after installation. You can also optionally specify a custom output directory. Example:
 ```bash
-python -m trustpy --oracle oracle.npy --pred preds.npy --mode cnts --trust_spectrum
+python -m trustpy --oracle oracle.npy --pred preds.npy --mode cnts --trust_spectrum --output_dir ./my_results
 ```
 
 For this you will need your actual/predicted results in `oracle.npy` and `preds.npy` format. You can generate test samples via:
@@ -158,7 +159,7 @@ For CNTS:
 python -c "from trustpy import CNTS; import numpy as np; CNTS(np.array([0,1,1,0]), np.array([[0.8,0.2],[0.2,0.8],[0.4,0.6],[0.9,0.1]]), trust_spectrum=True, show_summary=False).compute()"
 ```
 
-This will generate a test plot and save it to:
+This will generate a test plot and save it to the default output directory:
 ```bash
 ./trustpy/nts/trust_spectrum.png
 ./trustpy/cnts/conditional_trust_densities.png
